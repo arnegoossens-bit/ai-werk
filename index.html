@@ -154,8 +154,8 @@ a:hover .arrow{background:var(--blue);color:var(--on-blue)}
 .themes{padding-block:clamp(40px,5vw,72px) clamp(16px,2vw,24px)}
 .themes-head{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
 .themes-head .h3{font-size:clamp(26px,3vw,40px);font-weight:400;letter-spacing:-.025em}
-.theme-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
-@media (max-width:1240px){.theme-row{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.theme-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.theme-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.theme-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .theme{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:inherit;background:var(--band);border-radius:var(--r-lg);padding:10px 10px 16px;min-width:0;transition:transform .25s ease,background .25s}
 .theme:hover{transform:translateY(-4px);background:#EADFD8}
@@ -206,6 +206,7 @@ a:hover .arrow{background:var(--blue);color:var(--on-blue)}
 .blk.band .cmp .c.hl,.cmp .c.hl{background:var(--blue);color:var(--on-blue)}
 .blk.band .card.hl,.card.hl{background:var(--blue);color:var(--on-blue)}
 .cover > .gfx{position:absolute;inset:0}
+img[src*="bac-dco"]{object-position:50% 0}
 /* sections */
 .sec{padding-block:clamp(64px,9vw,128px)}
 .sec.band{background:var(--band)}
@@ -705,6 +706,32 @@ Extra: <alles wat de designer moet weten>`},
   related:[["Santa's Sleeroute (spel)", "https://arnegoossens-bit.github.io/secret-santa-organizer/"],["Schoorsteen Sprint (spel)", "https://arnegoossens-bit.github.io/secret-santa-organizer/"],["Homepage 2026", "https://arnegoossens-bit.github.io/secret-santa-organizer/"],["Secret Santa Organizer 2026", "https://arnegoossens-bit.github.io/secret-santa-organizer/"]]
 },
 {
+  id:"brussels-airport-dco", name:"Campagnebeeld Helper", kind:["dco"], client:"Brussels Airport",
+  title:"Brussels Airport DCO-tool: één campagnebeeld in elke banner, elk formaat en elke taal",
+  short:"Een eigen Figma-plugin die een campagnebeeld in de master zet, de achtergrond laat wegsnijden en de uitsnede over alle banners van de set verdeelt, netjes in elke taal.",
+  card:{img:"img/bac-dco-plugin.jpg", alt:"De Campagnebeeld Helper-plugin in Figma"},
+  headline:"Eén beeld kiezen. [[Elke banner mee.]]",
+  intro:"De Campagnebeeld Helper is onze eigen Figma-plugin voor de bannersets van Brussels Airport. Hij zet het campagnebeeld in de master, laat de achtergrond wegsnijden, verdeelt de uitsnede over alle banners en zorgt dat alles netjes vertaald wordt.",
+  chips:["Figma-plugin","DCO","Uitsnijdienst","EN · FR"],
+  cover:{type:"img", src:"img/bac-dco-figma.jpg", alt:"Figma met de Brussels Airport-bannerset en de Campagnebeeld Helper-plugin"},
+  blocks:[
+    {t:"flow", label:"Hoe het werkt", title:"Van één foto [[naar een volledige bannerset.]]", badge:"Campagnebeeld Helper",
+      steps:[["Campagne, Remarketing of beide","Set kiezen",""],["Bestand of Figma-laag","Beeld kiezen",""],["Foto in de master","Master",""],["Achtergrond weg","Uitsnijdienst",""],["Uitsnede verdeeld over de set","Alle banners",""]]},
+    {t:"figure", band:true, label:"De plugin", title:"Eén stap, [[geen handmatige klikken meer.]]",
+      img:"img/bac-dco-plugin.jpg", alt:"Het pluginvenster van de Campagnebeeld Helper", narrow:true,
+      cap:"De Campagnebeeld Helper in Figma: set kiezen, proefdraai, en beeld plaatsen én uitsnede maken in één knop. Klik om te vergroten."},
+    {t:"cards", label:"Wat de plugin regelt", title:"Wat vroeger handwerk was, [[zit nu in de plugin.]]", cols:4,
+      items:[["Netjes vertaald","De plugin zorgt dat **alles netjes vertaald** wordt, over de taalversies van de set heen."],["Eigen beeld per set","Campagne en Remarketing hebben **elk een eigen foto en uitsnede**. Het logo is gedeeld en dekt altijd beide."],["Proefdraai","Toont **wat er zou gebeuren**, zonder iets te wijzigen."],["Opgeruimd","Oude fotolagen worden **automatisch opgeruimd**."]]},
+    {t:"table", band:true, label:"De set", title:"Formaten [[in het testbestand.]]",
+      sub:"Zoals zichtbaar in de lagenlijst van het testbestand. De volledige set kan meer formaten en talen bevatten.",
+      head:["Formaat","Afmeting","Talen"],
+      rows:[["Banner","358×89.5","EN · FR"],["Meta","1080×1920","EN · FR"],["Performance Max","1200×1200","EN · FR"],["Social","1080×1080","EN"]]},
+    {t:"figure", label:"In Figma", title:"Eén master, [[alle banners nemen hem over.]]",
+      img:"img/bac-dco-figma.jpg", alt:"Figma met de bannerset per taal en formaat en de plugin geopend",
+      cap:"Het Figma-bestand met de bannerset per taal en formaat, en de plugin rechts. Klik om te vergroten."},
+  ]
+},
+{
   id:"motion-workflow", deck:{file:"decks/de-nieuwe-motion-workflow.pdf", name:"de-nieuwe-motion-workflow.pdf", pages:18, size:"2,2 MB"}, kind:["motion"], client:"iO motion team",
   title:"Motion workflow: van storyboard naar een open After Effects-file",
   short:"Claude bouwt via de Higgsfield-plugin echte lagen in After Effects. Getest op de case video's van Sibelga en Cambozola.",
@@ -931,12 +958,13 @@ const THEMES=[
   ["flows","Content op autopilot","Eén ticket in, motion en statics uit.","antonissen-auto-flow"],
   ["santa","Meer bezoekers met een game","Van één bezoek per jaar naar elke dag.","secret-santa"],
   ["games","Win-actie games","Speelbare concepten op één middag.","win-actie-games"],
+  ["dco","Bannersets in elke taal","Eén beeld, elke banner, elke taal.","brussels-airport-dco"],
   ["motion","Motion met AI","Van storyboard naar open AE-file.","motion-workflow"],
   ["3d","3D met AI","Twee versies in één werkdag.","kuraray-blender"],
   ["beeld","AI-beeldbanken","Van één shoot naar onbeperkt beeld.","boip-beeldbank"],
   ["video","Video-edits","Van script naar CapCut-project.","script-naar-edit"]];
 const FILTERS=[["all","Alles"],...THEMES.map(t=>[t[0],t[1]])];
-const TOOLS=["Claude","Adobe Firefly","Blender","After Effects","Higgsfield","Figma","n8n","Krea","ElevenLabs","CapCut","three.js","Bonzai","Premiere Pro","Jira","SharePoint"];
+const TOOLS=["Claude","Adobe Firefly","Figma-plugins","Blender","After Effects","Higgsfield","Figma","n8n","Krea","ElevenLabs","CapCut","three.js","Bonzai","Premiere Pro","Jira","SharePoint"];
 
 /* ===== renderers ===== */
 const sectionHead = (b) => `<div class="blk-head">${b.label?`<span class="eyebrow">${esc(b.label)}</span>`:""}${b.title?`<h2 class="h2 rv">${words(b.title)}</h2>`:""}${b.sub?`<p class="lead">${rt(b.sub)}</p>`:""}</div>`;
@@ -1032,7 +1060,7 @@ function renderHome(){
     <img class="hero-img" src="img/boip-kantoor.jpg" alt="" aria-hidden="true">
     <div class="hero-copy"><span class="pill pill-glass">AI-werk · oktober 2026</span>
       <h1 class="display hero-title">${heroWords.map((w,i)=>`<span class="w" style="animation-delay:${i*90}ms">${w}</span>`).join(" ")}</h1>
-      <p class="lead">Wat we de laatste weken met AI bouwden: zeven projecten, de tools erachter en wat het opleverde, gemeten op echt klantwerk.</p>
+      <p class="lead">Wat we de laatste weken met AI bouwden: acht projecten, de tools erachter en wat het opleverde, gemeten op echt klantwerk.</p>
       <div class="hero-meta"><a class="btn white" href="#antonissen-auto-flow">Start met de auto-flow ${RIGHT}</a><a class="btn outw" href="#home" data-go="cases">Al het werk</a></div>
     </div>
     <span class="scrollcue" aria-hidden="true">Scroll</span>
@@ -1040,7 +1068,7 @@ function renderHome(){
 
 
   <section class="themes gut" aria-labelledby="th-t"><div class="wrap">
-    <div class="themes-head"><span class="eyebrow">Zeven thema's</span><h2 class="h3" id="th-t">Kies waar je wil beginnen.</h2></div>
+    <div class="themes-head"><span class="eyebrow">Acht thema's</span><h2 class="h3" id="th-t">Kies waar je wil beginnen.</h2></div>
     <div class="theme-row">${THEMES.map((t,i)=>{const cs=CASES.filter(c=>c.kind.includes(t[0]));const c=CASES.find(x=>x.id===t[3]);
       return `<a class="theme" href="#${cs.length>1?"home":t[3]}" ${cs.length>1?`data-theme="${t[0]}"`:""}>
         <span class="th-pic">${c.card.img?`<img src="${c.card.img}" alt="" loading="lazy">`:c.card.gfx==="flow"?`<span class="gfx gfx-flow th-mini"><span class="gf-k">auto-flow</span><span class="gf-big">Ticket <b>→ Ad</b></span></span>`:gfxBlock(c.card)}</span>
