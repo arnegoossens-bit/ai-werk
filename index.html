@@ -1016,7 +1016,7 @@ function n8nFlow(){
   return `<div class="n8n"><div class="n8n-bar"><span class="n8n-dots" aria-hidden="true"><i></i><i></i><i></i></span><b>Antonissen auto-flow</b><span>n8n · vereenvoudigde weergave</span></div><div class="n8n-scroll"><svg viewBox="0 0 1390 390" role="img" aria-label="De Antonissen auto-flow in n8n: start via Bonzai, Jira-ticket, bestanden ophalen, Claude leest copy en kiest beelden, mail naar de designer om goed te keuren, dan motion via Krea en After Effects of statics via Figma, en tot slot alles naar SharePoint.">${E.map(edge).join("")}${N.map(node).join("")}</svg></div></div>`;
 }
 
-function flowChips(){return ["Jira-ticket","SharePoint","Claude","Krea","After Effects","Figma","Review"]}
+function flowChips(){return ["Bonzai","Jira-ticket","SharePoint","Claude","Krea","After Effects","Figma","Review"]}
 function gfxBlock(c, cls=""){
   if(c.gfx==="flow") return `<div class="gfx gfx-flow ${cls}"><div class="gf-steps">${flowChips().map((x,i)=>`<span style="--i:${i}">${x}</span>`).join('<i aria-hidden="true"></i>')}</div><div class="gf-foot"><span class="gf-k">Antonissen auto-flow</span><span class="gf-big">Eén ticket in.<br><b>Motion en statics uit.</b></span></div></div>`;
   return `<div class="gfx gfx-blue ${cls}"><span class="big">${esc(c.big)}</span><span class="small">${esc(c.small)}</span></div>`;
