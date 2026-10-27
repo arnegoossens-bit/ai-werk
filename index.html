@@ -1069,7 +1069,7 @@ function renderHome(){
   </div></section>
 
   <section class="sec band gut" id="live"><div class="wrap">
-    <div class="sec-head"><div style="display:flex;flex-direction:column;gap:16px"><span class="eyebrow">Live en speelbaar</span><h2 class="h2 rv">${words("Niet uitleggen, [[gewoon openen.]]")}</h2></div><p class="lead">De games, tools en voorstellen achter het werk, als werkende pagina's.</p></div>
+    <div class="sec-head"><div style="display:flex;flex-direction:column;gap:16px"><span class="eyebrow">Live en speelbaar</span><h2 class="h2 rv">${words("Zelf ontdekken: [[speel en klik gerust mee.]]")}</h2></div><p class="lead">De games, tools en voorstellen achter het werk, als werkende pagina's.</p></div>
     <div class="live">${LIVE.map(l=>`<a href="${l[3]}" target="_blank" rel="noopener"><em>${esc(l[0])}</em><b>${esc(l[1])}</b><span>${esc(l[2])}</span><span class="arrow">${ARROW}</span></a>`).join("")}</div>
   </div></section>
   ${footer()}</div>`;
@@ -1091,7 +1091,7 @@ function renderCase(c){
      <div style="display:flex;flex-direction:column;gap:18px;min-width:0"><p class="lead">${esc(c.intro)}</p><div class="chips">${c.chips.map(x=>`<span>${esc(x)}</span>`).join("")}</div>${dlBtn(c,"ghost")}</div></div></div></section>
    <section class="gut"><div class="wrap">${cover}</div></section>
    ${c.blocks.map(b=>R[b.t]?R[b.t](b):"").join("")}
-   ${c.related?`<section class="blk gut"><div class="wrap"><div class="blk-head"><span class="eyebrow">Live</span><h2 class="h2 rv">${words("Zelf [[openen.]]")}</h2></div><div class="live">${c.related.map(r=>`<a href="${r[1]}" target="_blank" rel="noopener" style="background:var(--soft)"><em>Live pagina</em><b>${esc(r[0])}</b><span class="arrow">${ARROW}</span></a>`).join("")}</div></div></section>`:""}
+   ${c.related?`<section class="blk gut"><div class="wrap"><div class="blk-head"><span class="eyebrow">Live</span><h2 class="h2 rv">${words("Zelf [[ontdekken.]]")}</h2></div><div class="live">${c.related.map(r=>`<a href="${r[1]}" target="_blank" rel="noopener" style="background:var(--soft)"><em>Live pagina</em><b>${esc(r[0])}</b><span class="arrow">${ARROW}</span></a>`).join("")}</div></div></section>`:""}
    <section class="gut"><div class="wrap"><div class="closing">${c.card.img?`<img src="${c.card.img}" alt="" aria-hidden="true">`:""}<div class="closing-in"><p class="statement">Experience is everything.</p><div class="hero-meta">${dlBtn(c,"light")}<a class="btn outw" href="#home" data-go="cases">Al het AI-werk</a></div></div></div>
      <a class="next" href="#${nx.id}"><div style="min-width:0"><span class="k">Volgend project</span><h3>${esc(nx.title)}</h3></div><span class="arrow">${ARROW}</span></a></div></section>
    ${footer()}</div>`;
