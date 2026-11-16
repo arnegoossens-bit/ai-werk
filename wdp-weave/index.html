@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Weave-dag WDP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long iO-style scroll, cream ground, white "canvas" cards, electric-blue accent; steps mirror the six groups on the Weave canvas */
+:root{
+  --bg:#EBE8E3; --surface:#FFFFFF; --surface-2:#F5F3EF; --ink:#141414; --muted:#5E5B57; --line:#D6D1C9;
+  --blue:#0000D2; --blue-soft:#E3E3FA; --on-blue:#FFFFFF;
+  --wire-img:#2BB673; --wire-txt:#A855F7; --wire-vid:#F05A6E;
+  --good:#1F7A4D; --bad:#B42318;
+  --f-display:"Figtree", "Manrope", system-ui, sans-serif;
+  --f-body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --r:18px; --r-sm:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121216; --surface:#1C1C22; --surface-2:#24242B; --ink:#F1EFEA; --muted:#A9A6A0; --line:#34343C;
+  --blue:#8C8CFF; --blue-soft:#24244A; --on-blue:#0B0B1A; --good:#5BD49A; --bad:#FF8A80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121216; --surface:#1C1C22; --surface-2:#24242B; --ink:#F1EFEA; --muted:#A9A6A0; --line:#34343C;
+  --blue:#8C8CFF; --blue-soft:#24244A; --on-blue:#0B0B1A; --good:#5BD49A; --bad:#FF8A80; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:600}
+h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:600}
+h3{font-size:1.3rem;font-weight:600}
+.hl{color:var(--blue)}
+p{margin:0;max-width:65ch}
+a{color:var(--blue)}
+.badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:var(--on-blue);font:600 .72rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
+.badge.ghost{background:var(--blue-soft);color:var(--blue)}
+.lead{font-size:1.18rem;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+section{padding-block:clamp(56px,8vw,104px)}
+section+section{border-top:1px solid var(--line)}
+.stack{display:flex;flex-direction:column;gap:20px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border-radius:var(--r);padding:24px}
+.media{border-radius:var(--r);overflow:hidden;background:var(--surface-2);position:relative}
+.media img,.media video{display:block;width:100%;height:auto}
+figure{margin:0}
+figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+.btn{appearance:none;border:0;cursor:pointer;font:600 .92rem/1 var(--f-body);padding:12px 18px;border-radius:999px;background:var(--blue);color:var(--on-blue)}
+.btn.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,button:focus-visible,select:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+/* top nav */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.logo{font:700 1.35rem/1 var(--f-display);letter-spacing:-.04em}
+.logo span{color:var(--blue)}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
+.nav::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:.88rem;font-weight:600;padding:8px 12px;border-radius:999px}
+.nav a:hover,.nav a.on{background:var(--surface);color:var(--ink)}
+
+/* hero */
+.hero{padding-block:clamp(40px,6vw,80px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:40px;align-items:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.9rem;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+
+/* about */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:600}
+.proj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.proj{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.proj div{background:var(--surface);border-radius:var(--r-sm);padding:14px 16px}
+.proj b{display:block;font-family:var(--f-display);font-size:1.02rem}
+.proj span{font-size:.86rem;color:var(--muted)}
+
+/* node explainer */
+.flowbox{background:var(--surface);border-radius:var(--r);padding:28px;overflow-x:auto}
+.flow{display:flex;align-items:center;gap:0;min-width:760px}
+.node{flex:0 0 auto;width:150px;border:2px solid var(--line);border-radius:14px;background:var(--surface-2);padding:12px 14px;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:border-color .15s, transform .15s}
+.node:hover{transform:translateY(-2px)}
+.node[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.node small{display:block;font:500 .68rem/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.node b{font-family:var(--f-display);font-size:1rem}
+.wire{flex:1 1 40px;height:3px;min-width:34px;position:relative;border-radius:2px}
+.wire::after{content:"";position:absolute;right:-1px;top:50%;width:9px;height:9px;border-radius:50%;background:inherit;transform:translateY(-50%)}
+.w-img{background:var(--wire-img)}.w-txt{background:var(--wire-txt)}.w-vid{background:var(--wire-vid)}
+.explain{margin-top:22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:820px){.explain{grid-template-columns:1fr}}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.86rem;color:var(--muted);margin-top:16px}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.terms{grid-template-columns:1fr}}
+.terms div{background:var(--surface);border-radius:var(--r-sm);padding:16px 18px}
+.terms b{font-family:var(--f-display)}
+
+/* canvas map */
+.map{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+@media (max-width:820px){.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.map a{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border-radius:var(--r-sm);padding:14px;border-top:4px solid var(--blue)}
+.map a:hover{background:var(--blue-soft)}
+.map b{display:block;font:700 1.6rem/1 var(--f-display);color:var(--blue)}
+.map span{font-size:.86rem;font-weight:600}
+
+/* steps */
+.step-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:start;margin-bottom:28px}
+.num{font:700 clamp(3rem,7vw,5.2rem)/.85 var(--f-display);color:var(--blue);letter-spacing:-.04em}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.fact{background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.fact em{font-style:normal;color:var(--blue)}
+.learn{background:var(--blue);color:var(--on-blue);border-radius:var(--r);padding:22px 24px}
+.learn h3{font-size:1.05rem;margin-bottom:10px}
+.learn ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.nodes-used{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.85rem}
+.nodes-used span{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:4px 9px;font-weight:600}
+.nodes-used i{font-style:normal;color:var(--muted)}
+
+/* before/after */
+.ba{position:relative;border-radius:var(--r);overflow:hidden;user-select:none;touch-action:pan-y;aspect-ratio:3/2;max-width:100%;background:var(--surface-2)}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba .after{clip-path:inset(0 0 0 var(--x,50%))}
+.ba .bar{position:absolute;top:0;bottom:0;left:var(--x,50%);width:3px;background:#fff;transform:translateX(-1.5px);pointer-events:none}
+.ba .knob{position:absolute;top:50%;left:var(--x,50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#0000D2;transform:translate(-50%,-50%);display:grid;place-items:center;font:700 1rem var(--f-body);box-shadow:0 2px 10px rgba(0,0,0,.25);pointer-events:none}
+.ba .tag{position:absolute;top:12px;padding:5px 10px;border-radius:999px;background:rgba(20,20,20,.7);color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ba .tag.l{left:12px}.ba .tag.r{right:12px}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (max-width:820px){.gal{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.gal button{padding:0;border:2px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;background:none;aspect-ratio:3/2}
+.gal button img{width:100%;height:100%;object-fit:cover;display:block}
+.gal button[aria-pressed="true"]{border-color:var(--blue)}
+.viewer{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:20px;align-items:start;margin-bottom:12px}
+@media (max-width:820px){.viewer{grid-template-columns:1fr}}
+
+/* prompt boxes */
+.prompt{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px 16px 18px;font:400 .86rem/1.55 var(--f-mono);white-space:pre-wrap;word-break:break-word}
+.prompt .var{background:var(--blue-soft);color:var(--blue);border-radius:4px;padding:0 4px}
+.copy{margin-top:10px}
+details{background:var(--surface);border-radius:var(--r-sm);padding:14px 18px}
+details summary{cursor:pointer;font-weight:700}
+details[open] summary{margin-bottom:12px}
+
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 14px;font:600 .88rem var(--f-body);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--blue);color:var(--on-blue);border-color:var(--blue)}
+
+/* timeline */
+.tl{position:relative;background:var(--surface);border-radius:var(--r);padding:20px;overflow-x:auto}
+.tl-in{min-width:720px}
+.tl-row{display:flex;height:44px;border-radius:8px;overflow:hidden}
+.tl-row div{display:flex;align-items:center;padding:0 8px;font-size:.74rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;border-right:2px solid var(--surface)}
+.tl-vo{position:relative;height:26px;margin-top:8px}
+.tl-vo span{position:absolute;top:0;height:26px;border-radius:6px;background:var(--wire-txt);color:#fff;font-size:.7rem;font-weight:700;padding:0 8px;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+.tl-ax{display:flex;justify-content:space-between;font:500 .72rem var(--f-mono);color:var(--muted);margin-top:8px}
+
+/* builder */
+.builder{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:24px;align-items:start}
+@media (max-width:900px){.builder{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:.9rem}
+select,input[type=text]{font:500 .95rem var(--f-body);padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+.anat{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;font-size:.78rem}
+.anat span{border-radius:6px;padding:3px 8px;font-weight:700}
+.a1{background:#E6E6FB;color:#0000D2}.a2{background:#E4F5EC;color:#1F7A4D}.a3{background:#FDECEE;color:#A0283A}.a4{background:#FFF1DB;color:#8A5300}.a5{background:#EEE6FB;color:#6B2BB8}
+.p-out .seg1{background:#E6E6FB;color:#0000D2}.p-out .seg2{background:#E4F5EC;color:#1F7A4D}.p-out .seg3{background:#FDECEE;color:#A0283A}.p-out .seg4{background:#FFF1DB;color:#8A5300}.p-out .seg5{background:#EEE6FB;color:#6B2BB8}
+.p-out span{border-radius:4px;padding:1px 3px}
+
+/* tips + quiz */
+.tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.tips{grid-template-columns:1fr}}
+.tips div{background:var(--surface);border-radius:var(--r-sm);padding:18px 20px}
+.tips b{font-family:var(--f-display);font-size:1.05rem;display:block;margin-bottom:4px}
+.quiz{background:var(--surface);border-radius:var(--r);padding:26px}
+.q-opts{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.q-opts button{text-align:left;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:10px;padding:12px 14px;font:500 .95rem var(--f-body);cursor:pointer}
+.q-opts button.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.q-opts button.no{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface))}
+.q-fb{margin-top:12px;min-height:1.6em;font-size:.95rem}
+.q-bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;margin-bottom:16px}
+.q-bar i{display:block;height:100%;background:var(--blue);width:0;transition:width .3s}
+
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line)}
+th{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td.n{font-variant-numeric:tabular-nums;font-weight:700;color:var(--blue)}
+.tablebox{background:var(--surface);border-radius:var(--r);padding:8px 16px;overflow-x:auto}
+
+.contact{background:var(--blue);color:var(--on-blue);border-radius:var(--r);padding:clamp(28px,5vw,52px);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:28px;align-items:center}
+@media (max-width:820px){.contact{grid-template-columns:1fr}}
+.contact h2{color:var(--on-blue)}
+.mail{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.mail code{font:500 1rem var(--f-mono);background:color-mix(in srgb,var(--on-blue) 14%,transparent);padding:10px 14px;border-radius:10px;user-select:all;word-break:break-all}
+.contact .btn{background:var(--on-blue);color:var(--blue)}
+footer{padding-block:32px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="logo">i<span>O</span></div>
+    <nav class="nav" aria-label="Secties">
+      <a href="#start">Start</a>
+      <a href="#arne">Wie is Arne</a>
+      <a href="#weave">Figma Weave</a>
+      <a href="#nodes">Nodes</a>
+      <a href="#stap-1">Stap 1</a>
+      <a href="#stap-2">Stap 2</a>
+      <a href="#stap-3">Stap 3</a>
+      <a href="#stap-4">Stap 4</a>
+      <a href="#stap-5">Stap 5</a>
+      <a href="#stap-6">Stap 6</a>
+      <a href="#promptbouwer">Promptbouwer</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#credits">Credits</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="start">
+  <div class="wrap hero-grid">
+    <div class="stack">
+      <span class="badge">WDP × iO · Weave-dag</span>
+      <h1>Van een lege ruimte naar een ruimte die <span class="hl">huurders willen zien.</span></h1>
+      <p class="lead">Alles wat we samen bouwden in Figma Weave, stap voor stap. Herbekijk de flows, kopieer de prompts en probeer het zelf opnieuw.</p>
+      <div class="meta"><span><b>20 november 2026</b></span><span><b>9:00 tot 16:30</b></span><span>Begeleid door <b>Arne Goossens, iO</b></span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#stap-1" style="text-decoration:none">Begin bij stap 1</a><a class="btn sec" href="#promptbouwer" style="text-decoration:none">Bouw zelf een prompt</a></div>
+    </div>
+    <figure>
+      <div class="media"><video src="media/wdp_film.mp4" poster="media/wdp_film_poster.jpg" controls playsinline preload="metadata"></video></div>
+      <figcaption>De film van de dag: 15 seconden, volledig gemonteerd in Weave, met muziek en Nederlandse voice-over. Zet het geluid aan.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="arne">
+  <div class="wrap grid2">
+    <div class="stack">
+      <span class="badge ghost">Wie staat er vandaag voor je</span>
+      <h2>Arne Goossens, <span class="hl">creative technologist bij iO.</span></h2>
+      <p>Ik werk in het creatieve team van iO, tussen designers, motion designers en UI-designers. Mijn rol: AI-workflows bouwen die hun werk sneller en schaalbaarder maken, zonder dat het creatieve vakmanschap verdwijnt. De designer blijft aan het stuur, AI doet het zware, herhalende werk.</p>
+      <p>Wat ik vandaag met jullie deel, komt rechtstreeks uit die praktijk: hoe je met één foto, een goede prompt en een paar nodes tot een volwaardige beeldreeks en film komt.</p>
+      <div class="chips"><span class="chip">Figma Weave</span><span class="chip">Krea</span><span class="chip">Claude</span><span class="chip">After Effects</span><span class="chip">Blender</span><span class="chip">ElevenLabs</span><span class="chip">Adobe Firefly</span><span class="chip">Figma</span></div>
+    </div>
+    <div class="stack">
+      <figure>
+        <div class="media"><video src="media/showreel.mp4" poster="media/showreel_poster.jpg" controls playsinline preload="metadata"></video></div>
+        <figcaption>Showreel, 24 seconden. Werk van de voorbije maanden bij iO.</figcaption>
+      </figure>
+      <div class="proj">
+        <div><b>Sibelga</b><span>Case video, storyboard naar open After Effects-file</span></div>
+        <div><b>Cambozola</b><span>Case video met dezelfde motion workflow</span></div>
+        <div><b>Kuraray EVAL</b><span>3D motion in Blender met Claude, twee versies in één dag</span></div>
+        <div><b>BOIP</b><span>AI-beeldbank met een eigen Firefly-stijlmodel</span></div>
+        <div><b>Brussels Airport</b><span>Figma-plugin: één beeld in elke banner en taal</span></div>
+        <div><b>Secret Santa</b><span>Dagelijkse mini-games die bezoekers laten terugkomen</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="weave">
+  <div class="wrap grid2">
+    <div class="stack">
+      <span class="badge ghost">De tool</span>
+      <h2>Wat is <span class="hl">Figma Weave?</span></h2>
+      <p>Figma Weave is een canvas in je browser waarop je AI-modellen en bewerkingstools aan elkaar koppelt. Je kiest per stap het model dat het best past: het ene voor beelden, een ander voor video, nog een ander voor camerabewegingen. Het resultaat van de ene stap gaat automatisch naar de volgende.</p>
+      <p>Weave begon als <b>Weavy</b>, een start-up uit Tel Aviv (2024). Eind oktober 2025 maakte Figma bekend dat het Weavy overneemt en verder uitbouwt als Figma Weave.</p>
+      <p class="small muted">Bronnen: <a href="https://www.figma.com/blog/welcome-weavy-to-figma/" target="_blank" rel="noopener">Figma blog</a>, <a href="https://www.fastcompany.com/91431691/figma-weave-weavy-acquisition" target="_blank" rel="noopener">Fast Company</a>.</p>
+    </div>
+    <div class="grid2" style="gap:14px">
+      <div class="card"><h3>Veel modellen, één plek</h3><p class="muted small" style="margin-top:8px">Vandaag gebruikten we onder meer Nano Banana, Qwen, Kling en de Compositor, allemaal op hetzelfde canvas.</p></div>
+      <div class="card"><h3>Jij houdt de regie</h3><p class="muted small" style="margin-top:8px">Elke tussenstap is zichtbaar. Je ziet waar het misloopt en past alleen die node aan.</p></div>
+      <div class="card"><h3>Bulk in één klik</h3><p class="muted small" style="margin-top:8px">Eén lijst met vijftien stijlen geeft vijftien interieurs, zonder vijftien keer te prompten.</p></div>
+      <div class="card"><h3>Herbruikbaar</h3><p class="muted small" style="margin-top:8px">Een flow die werkt, gebruik je opnieuw met een nieuwe foto. Of je deelt hem als eenvoudige tool met collega's.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="nodes">
+  <div class="wrap stack" style="gap:28px">
+    <div class="stack">
+      <span class="badge ghost">Het principe</span>
+      <h2>Wat is een <span class="hl">node-systeem?</span></h2>
+      <p class="lead">Denk aan een recept. Elke node is één stap, elke lijn geeft iets door aan de volgende stap. Klik op een node om te zien wat hij doet.</p>
+    </div>
+    <div class="flowbox">
+      <div class="flow" role="group" aria-label="Voorbeeldflow">
+        <button class="node" data-n="0" aria-pressed="true"><small>Import</small><b>Lege foto</b></button>
+        <div class="wire w-img"></div>
+        <button class="node" data-n="1" aria-pressed="false"><small>Text Iterator</small><b>15 stijlen</b></button>
+        <div class="wire w-txt"></div>
+        <button class="node" data-n="2" aria-pressed="false"><small>Prompt</small><b>Basisprompt</b></button>
+        <div class="wire w-txt"></div>
+        <button class="node" data-n="3" aria-pressed="false"><small>Model</small><b>Nano Banana</b></button>
+        <div class="wire w-img"></div>
+        <button class="node" data-n="4" aria-pressed="false"><small>Output</small><b>15 beelden</b></button>
+      </div>
+      <div class="legend"><span><i style="background:var(--wire-img)"></i>Groene lijn: beeld</span><span><i style="background:var(--wire-txt)"></i>Paarse lijn: tekst of prompt</span><span><i style="background:var(--wire-vid)"></i>Rode lijn: video</span></div>
+      <div class="explain">
+        <div class="stack" style="gap:10px"><h3 id="nx-t">Lege foto</h3><p id="nx-d" class="muted">Hier begint alles: de foto van de lege ruimte. Elke volgende stap gebruikt deze foto als basis, zodat het standpunt en de afmetingen van de ruimte kloppen.</p></div>
+        <div class="media"><img id="nx-i" src="media/leeg_kantoor.jpg" alt="Lege kantoorruimte, startfoto van de flow"></div>
+      </div>
+    </div>
+    <div class="terms">
+      <div><b>Node</b><p class="muted small">Eén bewerking: een foto inladen, een prompt schrijven, een model laten draaien, een video monteren.</p></div>
+      <div><b>Verbinding</b><p class="muted small">De lijn tussen twee nodes. De kleur toont wat er doorgaat: beeld, tekst of video.</p></div>
+      <div><b>Run</b><p class="muted small">Een model laten werken. Pas dan worden er credits gebruikt. Je ziet de prijs vooraf.</p></div>
+      <div><b>Variabele</b><p class="muted small">Een open plek in je prompt die per regel uit een lijst wordt ingevuld. Zo maak je bulk.</p></div>
+      <div><b>Groep</b><p class="muted small">Een kader rond nodes die samen één stap vormen. Ideaal om een canvas leesbaar te houden.</p></div>
+      <div><b>Compositor</b><p class="muted small">De montagetafel van Weave: lagen, tijdlijn, audio en export, zonder het canvas te verlaten.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="canvas">
+  <div class="wrap stack" style="gap:24px">
+    <div class="stack">
+      <span class="badge ghost">Ons canvas</span>
+      <h2>Zes groepen, <span class="hl">één verhaal.</span></h2>
+      <p class="lead">Zo zag ons canvas eruit aan het eind van de dag. Elke groep is een stap; klik om er meteen naartoe te gaan.</p>
+    </div>
+    <div class="map">
+      <a href="#stap-1"><b>1</b><span>Bulk: 15 stijlen</span></a>
+      <a href="#stap-2"><b>2</b><span>Perspectieven</span></a>
+      <a href="#stap-3"><b>3</b><span>Animatie</span></a>
+      <a href="#stap-4"><b>4</b><span>Montage</span></a>
+      <a href="#stap-5"><b>5</b><span>De film</span></a>
+      <a href="#stap-6"><b>6</b><span>Bijtekenen en licht</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 1 -->
+<section id="stap-1">
+  <div class="wrap">
+    <div class="step-head"><div class="num">01</div><div class="stack" style="gap:10px"><h2>Eén foto, <span class="hl">vijftien stijlen.</span></h2><p class="lead">We gaven Weave één foto van een lege kantoorruimte en een lijst met vijftien interieurstijlen. Eén klik later stonden er vijftien ingerichte versies naast elkaar.</p>
+      <div class="nodes-used"><span>Import</span><i>→</i><span>Text Iterator</span><i>→</i><span>Prompt met variabele</span><i>→</i><span>Nano Banana 2 Lite</span><i>→</i><span>Unpack</span></div>
+      <div class="facts"><span class="fact"><em>15</em> beelden</span><span class="fact"><em>45</em> credits in totaal</span><span class="fact"><em>3</em> credits per beeld</span></div></div></div>
+    <div class="grid2" style="margin-bottom:28px">
+      <div class="stack" style="gap:10px">
+        <div class="ba" id="ba1" style="--x:50%">
+          <img src="media/leeg_kantoor.jpg" alt="Lege kantoorruimte">
+          <img class="after" src="media/bulk_03.jpg" alt="Dezelfde ruimte als groen kantoor ingericht">
+          <div class="bar"></div><div class="knob">⇆</div>
+          <span class="tag l">Voor</span><span class="tag r">Na</span>
+          <input type="range" min="0" max="100" value="50" id="ba1-r" aria-label="Schuif tussen voor en na">
+        </div>
+        <p class="small muted">Sleep over het beeld. Standpunt, ramen en vloeroppervlak blijven exact gelijk; alleen de inrichting verandert.</p>
+      </div>
+      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Een <b>Text Iterator</b> vullen met één stijl per regel.</li><li>Een <b>variabele</b> in je prompt zetten, zodat elke regel een eigen beeld wordt.</li><li><b>Goedkoop verkennen</b> met een snel model, en pas daarna verfijnen met een duurder model.</li><li>Altijd zeggen <b>wat moet blijven</b>: camerastandpunt, afmetingen, ramen.</li></ul></div>
+    </div>
+    <h3 style="margin-bottom:14px">De vijftien stijlen</h3>
+    <div class="viewer">
+      <div class="media"><img id="g1-big" src="media/bulk_01.jpg" alt=""></div>
+      <div class="stack" style="gap:8px"><span class="badge ghost" id="g1-n">Stijl 1 van 15</span><p id="g1-s" style="font-weight:600"></p><p class="small muted">Klik op een miniatuur om de stijl en het resultaat te bekijken.</p></div>
+    </div>
+    <div class="gal" id="g1"></div>
+    <div class="grid2" style="margin-top:34px">
+      <div class="stack" style="gap:10px">
+        <h3>De prompt maakt het verschil</h3>
+        <p class="muted">Onze eerste versie gaf koel licht en zette in elk beeld een vergaderbox. Door het licht en de vrijheid van de stijl expliciet te beschrijven, werd versie 2 warmer en gevarieerder.</p>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="false" data-v="media/v1_koel.jpg" id="v1">Versie 1: koel</button><button role="tab" aria-selected="true" data-v="media/v2_warm.jpg" id="v2">Versie 2: warm</button></div>
+        <div class="media"><img id="vimg" src="media/v2_warm.jpg" alt="Vergelijking prompt versie 1 en 2"></div>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h3>De prompt die we gebruikten</h3>
+        <div class="prompt" id="p1">Furnish this exact space as a fully fitted-out interior in the following style: <span class="var">{stijl}</span>. Keep the exact camera angle, perspective, room dimensions, windows and floor area of the input photo. Add realistic furniture, lighting, materials and decoration that fit the style. Warm late-afternoon sunlight falling through the windows with soft shadows on the floor. Photorealistic high-end architectural interior visualisation, realistic scale, rich material detail.</div>
+        <div><button class="btn sec copy" data-copy="p1">Kopieer prompt</button></div>
+        <p class="small muted">Het deel tussen haakjes vult Weave per regel in met een stijl uit de lijst.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2 -->
+<section id="stap-2">
+  <div class="wrap">
+    <div class="step-head"><div class="num">02</div><div class="stack" style="gap:10px"><h2>Eén ruimte, <span class="hl">elk perspectief.</span></h2><p class="lead">We kozen de groene stijl en vroegen nieuwe camerastandpunten. Twee manieren, met een duidelijk verschil.</p>
+      <div class="facts"><span class="fact">Via prompt: Nano Banana Pro</span><span class="fact">Via camera: Qwen Edit Multiangle, <em>4</em> credits per beeld</span></div></div></div>
+    <div class="tabs" role="tablist" id="t2"><button role="tab" aria-selected="true" data-k="prompt">2a · Via prompt</button><button role="tab" aria-selected="false" data-k="qwen">2b · Via camera</button></div>
+    <div class="grid3" id="g2"></div>
+    <div class="grid2" style="margin-top:26px">
+      <div class="card stack" style="gap:8px"><h3 id="t2-h">Via prompt</h3><p class="muted" id="t2-p">We beschreven zes standpunten in tekst. Nano Banana Pro houdt stijl, meubels en licht perfect vast, maar het standpunt verschuift maar weinig. Handig voor variatie, niet voor echte camerabewegingen.</p></div>
+      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Kies de node die <b>doet wat je vraagt</b>, niet de duurste.</li><li>Echte camerarotatie stuur je beter <b>in graden</b> dan in woorden.</li><li>Consistente beelden zijn goud waard voor een <b>brochure</b> en voor <b>begin- en eindframes</b> van een animatie.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 3 -->
+<section id="stap-3">
+  <div class="wrap">
+    <div class="step-head"><div class="num">03</div><div class="stack" style="gap:10px"><h2>Van beeld <span class="hl">naar beweging.</span></h2><p class="lead">Met Kling maakten we van stilstaande beelden korte clips. De sterkste truc: een beginbeeld en een eindbeeld geven, en het model vult de beweging ertussen in.</p>
+      <div class="facts"><span class="fact">Kling First &amp; Last Frame: <em>55</em> credits</span><span class="fact">Kling 4.0: <em>40</em> credits</span><span class="fact">Clips van ongeveer <em>5</em> seconden</span></div></div></div>
+    <div class="grid3">
+      <figure><div class="media"><video src="media/clip_a.mp4" poster="media/clip_a_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>A · Leeg naar ingericht.</b> Begin: de lege foto. Einde: het groene kantoor.</figcaption></figure>
+      <figure><div class="media"><video src="media/clip_c.mp4" poster="media/clip_c_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>C · Pan van links naar rechts.</b> Twee standpunten uit stap 2 als begin en einde.</figcaption></figure>
+      <figure><div class="media"><video src="media/clip_d.mp4" poster="media/clip_d_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>D · Push-in naar de lounge.</b> Eén beeld en een camerabeweging in de prompt.</figcaption></figure>
+    </div>
+    <div class="grid2" style="margin-top:26px">
+      <div class="stack" style="gap:10px"><h3>Prompt voor clip A</h3><div class="prompt" id="p3">Locked-off camera with a very slow push-in. The empty office transforms into the fully furnished biophilic interior: planters, plants, desks and lounge furniture appear naturally in place while warm late-afternoon sunlight fills the room. Smooth, realistic, no people, no camera shake, no flicker.</div><div><button class="btn sec copy" data-copy="p3">Kopieer prompt</button></div></div>
+      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Met <b>begin- en eindframe</b> bepaal jij waar de clip start en eindigt.</li><li>Beschrijf <b>één duidelijke camerabeweging</b> per clip.</li><li>Sluit af met wat je níet wil: <b>geen mensen, geen flikkering, geen vervorming</b>.</li><li>Clip B bewoog te weinig en viel af. Niet elke run is raak; dat hoort erbij.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 4 -->
+<section id="stap-4">
+  <div class="wrap">
+    <div class="step-head"><div class="num">04</div><div class="stack" style="gap:10px"><h2>Monteren <span class="hl">zonder Weave te verlaten.</span></h2><p class="lead">De Compositor is een eenvoudige montagetafel in Weave. Je sleept clips naar lagen, knipt ze op de tijdlijn, zet muziek en stem eronder en exporteert een mp4.</p></div></div>
+    <div class="grid3">
+      <div class="card"><h3>Lagen</h3><p class="muted small" style="margin-top:8px">Elke clip krijgt een laag. Wat bovenaan staat, ligt in beeld bovenop. Handig voor een logo of eindbeeld dat over de film heen komt.</p></div>
+      <div class="card"><h3>Tijdlijn</h3><p class="muted small" style="margin-top:8px">Sleep de randen van een clip om in- en uitpunt te kiezen. Een donker stuk is een deel van de clip dat je niet gebruikt.</p></div>
+      <div class="card"><h3>Audio en export</h3><p class="muted small" style="margin-top:8px">Muziek en voice-over komen als aparte lagen. Zet het volume van de muziek lager onder de stem. Export levert een mp4 op.</p></div>
+    </div>
+    <div class="learn" style="margin-top:20px"><h3>Wat je hier leert</h3><ul><li>Video-lagen <b>dempen</b> als je eigen muziek gebruikt.</li><li>Kijk na elke wijziging <b>frame per frame</b> rond de cuts: een gat van één frame geeft een zwarte flits.</li><li>De export van de Compositor speelt iets minder vloeiend af dan de losse clips. Voor de allerhoogste kwaliteit monteer je de clips nadien in een videobewerker.</li></ul></div>
+  </div>
+</section>
+
+<!-- STEP 5 -->
+<section id="stap-5">
+  <div class="wrap">
+    <div class="step-head"><div class="num">05</div><div class="stack" style="gap:10px"><h2>De film: <span class="hl">eerst leeg, dan gevuld.</span></h2><p class="lead">De stem vertelt het verhaal, het beeld volgt. Zolang de stem over een lege ruimte spreekt, blijft de ruimte leeg. Pas op "een plek waar je elke dag wil binnenstappen" vult ze zich.</p>
+      <div class="facts"><span class="fact"><em>15</em> seconden</span><span class="fact">Stem: ElevenLabs, Nederlands</span><span class="fact">Muziek: MiniMax, <em>108</em> bpm</span><span class="fact">Cuts op de beat</span></div></div></div>
+    <div class="grid2">
+      <figure><div class="media"><video src="media/wdp_film.mp4" poster="media/wdp_film_poster.jpg" controls playsinline preload="metadata"></video></div><figcaption>Het eindresultaat, met geluid.</figcaption></figure>
+      <div class="stack" style="gap:14px">
+        <div class="card stack" style="gap:6px"><h3>De voice-over</h3><p class="muted">"Een lege ruimte. Of een plek waar je elke dag wil binnenstappen. Ontdek wat jouw ruimte kan worden."</p></div>
+        <div class="learn"><h3>Wat je hier leert</h3><ul><li>Laat de <b>stem de beelden sturen</b>, niet andersom.</li><li><b>Nooit hetzelfde shot twee keer.</b> Een kortere film is beter dan opvulling.</li><li>Knip <b>op de beat</b> van de muziek, dan voelt de film strak.</li><li>Geef tekst op het eindbeeld <b>genoeg leestijd</b>: hier bijna drie seconden.</li></ul></div>
+      </div>
+    </div>
+    <h3 style="margin:30px 0 12px">De opbouw op de tijdlijn</h3>
+    <div class="tl"><div class="tl-in">
+      <div class="tl-row" id="tl"></div>
+      <div class="tl-vo"><span style="left:0.9%;width:7%">Een lege ruimte.</span><span style="left:21.7%;width:19.6%">Of een plek waar je elke dag wil binnenstappen.</span><span style="left:81.5%;width:13.5%">Ontdek wat jouw ruimte kan worden.</span></div>
+      <div class="tl-ax"><span>0 s</span><span>3 s</span><span>6 s</span><span>9 s</span><span>12 s</span><span>15 s</span></div>
+    </div></div>
+    <div class="grid2" style="margin-top:22px">
+      <div class="stack" style="gap:10px"><h3>Prompt voor een leeg shot</h3><div class="prompt" id="p5">Fast, smooth low-angle dolly push forward across the completely empty office floor towards the windows, the camera glides just above the light wooden floor. The room stays completely empty: no furniture, no plants, no people, nothing appears. Bright clean daylight, cinematic architectural film, steady stabilized motion.</div><div><button class="btn sec copy" data-copy="p5">Kopieer prompt</button></div></div>
+      <figure><div class="media"><video src="media/leeg_e1.mp4" poster="media/leeg_e1_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption>Het lege shot dat uit die prompt kwam. Herhaal "nothing appears" gerust: anders zet het model toch meubels neer.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 6 -->
+<section id="stap-6">
+  <div class="wrap">
+    <div class="step-head"><div class="num">06</div><div class="stack" style="gap:10px"><h2>Bijtekenen <span class="hl">en het licht kiezen.</span></h2><p class="lead">In de lobby tekenden we met de Painter ruwe vormen op de foto: groen voor planten, oranje voor een zithoek. Nano Banana Pro maakte er echte meubels van, en een tweede stap zette de lobby in avondlicht.</p>
+      <div class="nodes-used"><span>Import</span><i>→</i><span>Painter</span><i>→</i><span>Nano Banana Pro</span><i>→</i><span>Nano Banana Pro</span></div>
+      <div class="facts"><span class="fact"><em>11</em> credits per beeld</span></div></div></div>
+    <div class="tabs" role="tablist" id="t6">
+      <button role="tab" aria-selected="false" data-i="media/lobby.jpg" data-c="De originele lobby, zoals hij er vandaag uitziet.">Origineel</button>
+      <button role="tab" aria-selected="false" data-i="media/g6_schets.jpg" data-c="Met de Painter ruwe vormen getekend: waar moet wat komen?">1 · Schets</button>
+      <button role="tab" aria-selected="true" data-i="media/g6_render.jpg" data-c="Nano Banana Pro maakt van de vormen echte meubels. Trap, galerij en vloer blijven gelijk.">2 · Render</button>
+      <button role="tab" aria-selected="false" data-i="media/g6_avond.jpg" data-c="Zelfde beeld, enkel het licht verandert: lampen aan, blauw uur buiten.">3 · Avondlicht</button>
+    </div>
+    <div class="grid2">
+      <figure><div class="media"><img id="t6-img" src="media/g6_render.jpg" alt="Lobby, stap van bijtekenen"></div><figcaption id="t6-cap">Nano Banana Pro maakt van de vormen echte meubels. Trap, galerij en vloer blijven gelijk.</figcaption></figure>
+      <div class="stack" style="gap:14px">
+        <div class="learn"><h3>Wat je hier leert</h3><ul><li>Je hoeft niet te kunnen tekenen: <b>ruwe vlakken</b> volstaan.</li><li>Zeg in de prompt <b>wat elke kleur betekent</b> en dat de strepen moeten verdwijnen.</li><li>Het model voegt soms meer toe dan je tekende. <b>Hoe preciezer je tekent en beschrijft</b>, hoe minder het verzint.</li></ul></div>
+        <div class="card stack" style="gap:6px"><h3>Een leermoment: Relight 2.0</h3><p class="muted">We probeerden eerst de aparte Relight 2.0-node. Die veranderde de architectuur zelf: de tegelvloer werd parket, er kwamen ramen bij en het beeld werd bijgesneden. Voor vastgoed is dat onbruikbaar. Met Nano Banana Pro en de opdracht "verander enkel het licht" bleef alles staan.</p></div>
+      </div>
+    </div>
+    <details style="margin-top:20px"><summary>Bekijk de twee prompts</summary>
+      <div class="stack" style="gap:12px">
+        <div class="prompt" id="p6a">Turn the coloured strokes painted on this lobby photo into real, photorealistic furniture and decor at exactly those positions and sizes. Read each painted shape as the object it suggests: sofas and armchairs, a low coffee table, a rug, large green plants, floor lamps. Remove every painted stroke completely. Keep the architecture, staircase, gallery, floor, camera angle and daylight exactly the same. Warm, inviting, photorealistic architectural photography.</div>
+        <div><button class="btn sec copy" data-copy="p6a">Kopieer render-prompt</button></div>
+        <div class="prompt" id="p6b">Change only the lighting of this exact photo to a warm golden evening mood: low sunset light glowing through the glass doors and windows, the ceiling spots and floor lamps switched on with a warm glow, soft long shadows on the floor, a slightly darker blue-hour sky outside. Keep every piece of furniture, every plant, the floor tiles, the walls, the staircase, the architecture and the camera angle exactly the same. Photorealistic architectural photography.</div>
+        <div><button class="btn sec copy" data-copy="p6b">Kopieer licht-prompt</button></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- PROMPT BUILDER -->
+<section id="promptbouwer">
+  <div class="wrap stack" style="gap:26px">
+    <div class="stack">
+      <span class="badge ghost">Zelf proberen</span>
+      <h2>Bouw je eigen <span class="hl">interieurprompt.</span></h2>
+      <p class="lead">Elke goede prompt van vandaag had dezelfde vijf delen. Kies hieronder je eigen invulling, kopieer de prompt en plak hem in een Prompt-node in Weave.</p>
+      <div class="anat"><span class="a1">1 · Opdracht</span><span class="a2">2 · Stijl</span><span class="a3">3 · Wat blijft</span><span class="a4">4 · Licht</span><span class="a5">5 · Kwaliteit</span></div>
+    </div>
+    <div class="builder">
+      <div class="card stack" style="gap:14px">
+        <div class="field"><label for="b-room">Welke ruimte?</label><select id="b-room"><option value="this exact empty office space">Lege kantoorruimte</option><option value="this exact empty lobby">Lege lobby</option><option value="this exact empty warehouse hall">Lege magazijnhal</option><option value="this exact empty meeting room">Lege vergaderzaal</option><option value="this exact empty canteen">Lege kantine</option></select></div>
+        <div class="field"><label for="b-style">Welke stijl?</label><select id="b-style"></select></div>
+        <div class="field"><label for="b-light">Welk licht?</label><select id="b-light"><option value="Warm late-afternoon sunlight falling through the windows with soft shadows on the floor.">Late namiddag, warm</option><option value="Fresh, bright morning daylight with crisp soft shadows.">Frisse ochtend</option><option value="Overcast, even daylight with very soft shadows, calm and neutral.">Bewolkt, egaal</option><option value="Golden evening light, warm lamps switched on, a blue-hour sky outside the windows.">Avond, lampen aan</option></select></div>
+        <div class="field"><label for="b-extra">Iets dat zeker in beeld moet? (optioneel)</label><input type="text" id="b-extra" placeholder="bv. a large green wall with the WDP logo"></div>
+      </div>
+      <div class="stack" style="gap:10px">
+        <div class="prompt p-out" id="b-out"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="b-copy">Kopieer prompt</button><button class="btn sec" id="b-rand">Verras me</button></div>
+        <p class="small muted">Tip: zet deze prompt in Weave tussen een Import-node met je foto en een Nano Banana-node. Eerst met Nano Banana 2 Lite verkennen, je favoriet daarna met Nano Banana Pro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="wrap stack" style="gap:24px">
+    <div class="stack"><span class="badge ghost">Spiekbrief</span><h2>Regie houden, <span class="hl">ook met AI.</span></h2></div>
+    <div class="tips">
+      <div><b>Zeg altijd wat blijft</b><span class="muted">Camerastandpunt, ramen, vloer, architectuur. Wat je niet vastlegt, verandert het model.</span></div>
+      <div><b>Goedkoop verkennen, duur verfijnen</b><span class="muted">Eerst vijftien snelle varianten, dan enkel je favoriet in hoge kwaliteit.</span></div>
+      <div><b>Eén stijl, één verhaal</b><span class="muted">Kies na de verkenning één richting en hou die vast in alle volgende stappen.</span></div>
+      <div><b>Begin- en eindframe</b><span class="muted">Zo bepaal jij de beweging in plaats van het model.</span></div>
+      <div><b>Geen herhaling</b><span class="muted">Twee bijna gelijke shots in één film verzwakken alles. Liever korter.</span></div>
+      <div><b>Check de prijs vooraf</b><span class="muted">Selecteer nodes en kijk rechtsonder: Weave toont de credits vóór je op Run klikt.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="wrap grid2">
+    <div class="stack"><span class="badge ghost">Test jezelf</span><h2>Vijf vragen <span class="hl">over vandaag.</span></h2><p class="lead">Even checken wat er is blijven hangen. Geen punten op je rapport, beloofd.</p></div>
+    <div class="quiz" aria-live="polite">
+      <div class="q-bar"><i id="q-bar"></i></div>
+      <p class="small muted" id="q-n"></p>
+      <h3 id="q-q" style="margin-top:6px"></h3>
+      <div class="q-opts" id="q-o"></div>
+      <p class="q-fb" id="q-fb"></p>
+      <div style="display:flex;gap:10px"><button class="btn" id="q-next" hidden>Volgende vraag</button><button class="btn sec" id="q-again" hidden>Opnieuw</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDITS -->
+<section id="credits">
+  <div class="wrap stack" style="gap:22px">
+    <div class="stack"><span class="badge ghost">Wat kost het</span><h2>Credits per node, <span class="hl">zoals gemeten.</span></h2><p class="lead">De prijzen die Weave toonde tijdens het bouwen van deze flows (november 2026). Prijzen kunnen wijzigen; Weave toont altijd de actuele kost vóór je een run start.</p></div>
+    <div class="tablebox"><table>
+      <thead><tr><th>Node</th><th>Waarvoor</th><th>Credits</th></tr></thead>
+      <tbody>
+        <tr><td>Nano Banana 2 Lite</td><td>Snel verkennen, bulk van stijlen</td><td class="n">3 per beeld</td></tr>
+        <tr><td>Qwen Edit Multiangle</td><td>Camera draaien in graden</td><td class="n">4</td></tr>
+        <tr><td>Nano Banana Pro</td><td>Hoge kwaliteit, bijtekenen, licht</td><td class="n">11</td></tr>
+        <tr><td>Kling 4.0</td><td>Clip uit één beeld</td><td class="n">40</td></tr>
+        <tr><td>Kling First &amp; Last Frame</td><td>Clip tussen begin- en eindbeeld</td><td class="n">55</td></tr>
+        <tr><td>Relight 2.0</td><td>Licht wijzigen (veranderde hier de architectuur)</td><td class="n">10</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="stack" style="gap:12px"><h2>Vragen of verder bouwen?</h2><p style="opacity:.9">Wil je een flow uitbreiden, een eigen tool voor je team publiceren of een volgende ruimte aanpakken? Laat het me weten, dan bouwen we verder.</p></div>
+      <div class="stack" style="gap:10px"><b>Arne Goossens · iO</b><div class="mail"><code id="mail">arne.goossens@iodigital.com</code><button class="btn" id="mail-copy">Kopieer</button></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">WDP × iO · Weave-dag van 20 november 2026 · Beelden en film gemaakt in Figma Weave</div></footer>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+  async function copyText(text, btn){
+    const old=btn.textContent;
+    try{ await navigator.clipboard.writeText(text); btn.textContent='Gekopieerd'; }
+    catch(e){ btn.textContent='Selecteer en kopieer zelf'; }
+    setTimeout(()=>btn.textContent=old,1800);
+  }
+  $$('.copy').forEach(b=>b.addEventListener('click',()=>{
+    const el=document.getElementById(b.dataset.copy);
+    if(!el.innerText.trim()) return;
+    copyText(el.innerText, b);
+    const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+  }));
+  $('#mail-copy').addEventListener('click',e=>copyText($('#mail').textContent,e.currentTarget));
+
+  // node explainer
+  const nx=[
+    ['Lege foto','Hier begint alles: de foto van de lege ruimte. Elke volgende stap gebruikt deze foto als basis, zodat het standpunt en de afmetingen van de ruimte kloppen.','media/leeg_kantoor.jpg'],
+    ['15 stijlen','Een Text Iterator is een lijst: één stijl per regel. Weave stuurt elke regel apart door, zodat je met één klik vijftien varianten maakt.','media/bulk_09.jpg'],
+    ['Basisprompt','De prompt beschrijft de opdracht één keer, met een variabele op de plek van de stijl. Hier zeg je ook wat er niet mag veranderen.','media/bulk_04.jpg'],
+    ['Nano Banana','Het model doet het werk. Elke regel uit de lijst wordt één beeld. Pas bij deze stap worden credits gebruikt.','media/bulk_01.jpg'],
+    ['15 beelden','Alle resultaten verschijnen naast elkaar op het canvas. Kies je favoriet en stuur die door naar de volgende groep.','media/bulk_03.jpg']
+  ];
+  $$('.node').forEach(b=>b.addEventListener('click',()=>{
+    $$('.node').forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true');
+    const d=nx[+b.dataset.n]; $('#nx-t').textContent=d[0]; $('#nx-d').textContent=d[1]; $('#nx-i').src=d[2];
+  }));
+
+  // before/after
+  const ba=$('#ba1'), bar=$('#ba1-r');
+  bar.addEventListener('input',()=>ba.style.setProperty('--x',bar.value+'%'));
+
+  // gallery step 1
+  const styles=["industrial loft, exposed concrete ceiling with ducts and red sprinkler pipes, black steel desks, leather lounge sofa, pendant lamps, warm low sunlight","creative agency, colourful accents, blue feature wall, fluted oak cabinets, playful stools, pink lounge sofa","biophilic green office, planter boxes with lush plants between the desks, warm oak, soft beige lounge","scandinavian, light oak, white brick wall, boucle chairs, minimal white pendants, calm daylight","japandi, low wooden furniture, paper lamps, muted earth tones","luxury corporate, walnut panelling, brass details, dark marble","tech startup, standing desks, subtle neon accents, beanbags, whiteboard walls","coworking hub, mix of hot desks, acoustic phone booths and a coffee bar","hospitality style, hotel-lobby lounge, velvet sofas, warm ambient lighting","minimal white gallery, almost no furniture, large artworks on the walls","mid-century modern, teak furniture, mustard and olive tones, globe lamps","sustainable office, reclaimed wood, cork wall panels, recycled materials","training centre, flexible seating rows facing a large screen","product showroom, minimal display plinths, track spotlights, open floor","wellness and focus space, soft acoustic panels, plants, lounge chairs"];
+  const nl=["Industriële loft","Creatief agency","Groen kantoor (onze keuze)","Scandinavisch","Japandi","Luxe corporate","Tech start-up","Coworking","Hotel-lobby","Witte galerie","Mid-century","Duurzaam","Opleidingscentrum","Showroom","Wellness en focus"];
+  const g1=$('#g1');
+  function pick(i){
+    $('#g1-big').src=`media/bulk_${String(i+1).padStart(2,'0')}.jpg`; $('#g1-big').alt=nl[i];
+    $('#g1-n').textContent=`Stijl ${i+1} van 15 · ${nl[i]}`; $('#g1-s').textContent=styles[i];
+    $$('#g1 button').forEach((b,k)=>b.setAttribute('aria-pressed',k===i?'true':'false'));
+  }
+  styles.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',nl[i]);b.innerHTML=`<img src="media/bulk_${String(i+1).padStart(2,'0')}.jpg" alt="">`;b.addEventListener('click',()=>pick(i));g1.appendChild(b)});
+  pick(2);
+
+  // v1/v2
+  [$('#v1'),$('#v2')].forEach(b=>b.addEventListener('click',()=>{[$('#v1'),$('#v2')].forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');$('#vimg').src=b.dataset.v}));
+
+  // step 2 tabs
+  const sets={
+    prompt:{h:'Via prompt',p:'We beschreven zes standpunten in tekst. Nano Banana Pro houdt stijl, meubels en licht perfect vast, maar het standpunt verschuift maar weinig. Handig voor variatie, niet voor echte camerabewegingen.',imgs:[1,2,3,4,5,6].map(i=>`media/persp_prompt_${i}.jpg`),cap:["Vanuit de inkomhoek","Terugkijken vanaf de ramen","Laag langs de planters","Van hoog in een hoek","Langs de ramen","Detail van de lounge"]},
+    qwen:{h:'Via camera',p:'Qwen Edit Multiangle draait de camera echt, in graden: 45° naar links, 45° naar rechts of een stap vooruit. Stijl, licht en meubels blijven gelijk, en het kost maar 4 credits per beeld.',imgs:[1,2,3].map(i=>`media/persp_qwen_${i}.jpg`),cap:["Camera gedraaid, versie 1","Camera gedraaid, versie 2","Camera gedraaid, versie 3"]}
+  };
+  function show2(k){
+    const s=sets[k]; $('#t2-h').textContent=s.h; $('#t2-p').textContent=s.p;
+    $('#g2').innerHTML=s.imgs.map((src,i)=>`<figure><div class="media"><img src="${src}" alt="${s.cap[i]}"></div><figcaption>${s.cap[i]}</figcaption></figure>`).join('');
+    $$('#t2 button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k?'true':'false'));
+  }
+  $$('#t2 button').forEach(b=>b.addEventListener('click',()=>show2(b.dataset.k))); show2('prompt');
+
+  // step 6 tabs
+  $$('#t6 button').forEach(b=>b.addEventListener('click',()=>{$$('#t6 button').forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');$('#t6-img').src=b.dataset.i;$('#t6-cap').textContent=b.dataset.c}));
+
+  // timeline (seconds, measured in the export)
+  const segs=[[0,1.7,'Leeg: push-in','#5E5B57'],[1.7,3.4,'Leeg: laag shot','#7A7671'],[3.4,6.25,'De ruimte vult zich','#0000D2'],[6.25,7.93,'Planters','#2E8B57'],[7.93,9.64,'Kraanshot','#3A9E68'],[9.64,11.33,'Lounge','#4BAF78'],[11.33,15,'WDP-eindbeeld','#E8732A']];
+  $('#tl').innerHTML=segs.map(s=>`<div style="width:${((s[1]-s[0])/15*100).toFixed(2)}%;background:${s[3]}" title="${s[0]} tot ${s[1]} s">${s[2]}</div>`).join('');
+
+  // prompt builder
+  const sel=$('#b-style'); styles.forEach((s,i)=>{const o=document.createElement('option');o.value=s;o.textContent=nl[i].replace(' (onze keuze)','');sel.appendChild(o)}); sel.selectedIndex=2;
+  const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  function build(){
+    const room=$('#b-room').value, st=sel.value, li=$('#b-light').value, ex=$('#b-extra').value.trim();
+    const keep=room.includes('warehouse')?'Keep the exact camera angle, perspective, hall dimensions, steel structure, roof and floor of the input photo.':'Keep the exact camera angle, perspective, room dimensions, windows and floor area of the input photo.';
+    const parts=[
+      ['seg1',`Furnish ${room} as a fully fitted-out interior in the following style:`],
+      ['seg2',` ${st}${ex?', with '+ex:''}.`],
+      ['seg3',` ${keep} Add realistic furniture, lighting, materials and decoration that fit the style.`],
+      ['seg4',` ${li}`],
+      ['seg5',' Photorealistic high-end architectural interior visualisation, realistic scale, rich material detail.']
+    ];
+    $('#b-out').innerHTML=parts.map(p=>`<span class="${p[0]}">${esc(p[1])}</span>`).join('');
+  }
+  ['#b-room','#b-style','#b-light','#b-extra'].forEach(s=>$(s).addEventListener('input',build));
+  $('#b-copy').addEventListener('click',e=>copyText($('#b-out').innerText,e.currentTarget));
+  $('#b-rand').addEventListener('click',()=>{const r=(n)=>Math.floor(Math.random()*n);$('#b-room').selectedIndex=r(5);sel.selectedIndex=r(15);$('#b-light').selectedIndex=r(4);build()});
+  build();
+
+  // quiz
+  const Q=[
+    {q:'Wat doet een Text Iterator in onze bulk-flow?',o:['Hij vertaalt de prompt naar het Nederlands','Hij stuurt elke regel uit een lijst apart door, zodat je per regel een beeld krijgt','Hij maakt van een beeld een video'],a:1,e:'Eén regel per stijl, één beeld per regel. Zo maakten we vijftien interieurs in één klik.'},
+    {q:'Je wil echt rond dezelfde ruimte draaien. Welke node kies je?',o:['Qwen Edit Multiangle','Nano Banana Pro met een prompt','Relight 2.0'],a:0,e:'Qwen draait de camera in graden. Via een prompt verschuift het standpunt maar weinig.'},
+    {q:'Waarom gaven we Kling een begin- én een eindframe?',o:['Omdat het goedkoper is','Zodat wij bepalen waar de clip start en eindigt','Omdat de clip dan langer wordt'],a:1,e:'Met twee frames vult het model de beweging ertussen in en heb jij de regie.'},
+    {q:'Wat moet in elke interieurprompt staan?',o:['Zoveel mogelijk bijvoeglijke naamwoorden','Wat er moet blijven: standpunt, ramen, vloer','De naam van het model'],a:1,e:'Wat je niet vastlegt, mag het model veranderen.'},
+    {q:'Wat ging er mis met Relight 2.0 in de lobby?',o:['Niets, het was perfect','Hij veranderde de architectuur: parket in plaats van tegels, extra ramen','Hij was te duur'],a:1,e:'Daarom gebruikten we Nano Banana Pro met de opdracht om enkel het licht te veranderen.'}
+  ];
+  let qi=0, score=0;
+  function renderQ(){
+    const q=Q[qi]; $('#q-n').textContent=`Vraag ${qi+1} van ${Q.length}`; $('#q-q').textContent=q.q; $('#q-fb').textContent='';
+    $('#q-bar').style.width=(qi/Q.length*100)+'%'; $('#q-next').hidden=true; $('#q-again').hidden=true;
+    $('#q-o').innerHTML=''; q.o.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;b.addEventListener('click',()=>answer(i));$('#q-o').appendChild(b)});
+  }
+  function answer(i){
+    const q=Q[qi], bs=$$('#q-o button'); if(bs.some(b=>b.disabled)) return;
+    bs.forEach((b,k)=>{b.disabled=true; if(k===q.a) b.classList.add('ok'); else if(k===i) b.classList.add('no')});
+    if(i===q.a) score++;
+    $('#q-fb').innerHTML=(i===q.a?'<b>Juist.</b> ':'<b>Bijna.</b> ')+q.e;
+    if(qi<Q.length-1) $('#q-next').hidden=false; else { $('#q-bar').style.width='100%'; $('#q-fb').innerHTML+=`<br><br><b>Je score: ${score} op ${Q.length}.</b> ${score>=4?'Klaar om zelf flows te bouwen.':'Scroll gerust nog eens door de stappen.'}`; $('#q-again').hidden=false; }
+  }
+  $('#q-next').addEventListener('click',()=>{qi++;renderQ()});
+  $('#q-again').addEventListener('click',()=>{qi=0;score=0;renderQ()});
+  renderQ();
+
+  // nav highlight
+  const links=$$('.nav a'), ids=links.map(a=>a.getAttribute('href').slice(1));
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));const on=links.find(a=>a.classList.contains('on'));const nav=$('.nav');if(on&&nav) nav.scrollTo({left:on.offsetLeft-nav.clientWidth/2+on.clientWidth/2,behavior:'smooth'})}})},{rootMargin:'-45% 0px -50% 0px'});
+  ids.forEach(id=>{const el=document.getElementById(id); if(el) io.observe(el)});
+})();
+</script>
+
+</body>
+</html>
