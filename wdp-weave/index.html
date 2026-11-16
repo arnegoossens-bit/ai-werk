@@ -228,6 +228,10 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
       <a href="#stap-5">Stap 5</a>
       <a href="#stap-6">Stap 6</a>
       <a href="#promptbouwer">Promptbouwer</a>
+      <a href="#denkwijze">Denkwijze</a>
+      <a href="#prompttips">Prompttips</a>
+      <a href="#misloopt">Als het misloopt</a>
+      <a href="#oefenen">Oefenen</a>
       <a href="#quiz">Quiz</a>
       <a href="#credits">Credits</a>
     </nav>
@@ -530,6 +534,147 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
   </div>
 </section>
 
+<!-- DENKWIJZE -->
+<section id="denkwijze">
+  <div class="wrap stack" style="gap:24px">
+    <div class="stack"><span class="badge ghost">Onze denkwijze</span><h2>Zes stappen, <span class="hl">telkens één vraag.</span></h2><p class="lead">Zo dachten we vandaag van een lege ruimte naar een film. Je kan dezelfde vragen stellen bij elk nieuw pand.</p></div>
+    <div class="tablebox"><table>
+      <thead><tr><th>Stap</th><th>De vraag die je stelt</th><th>In Weave</th></tr></thead>
+      <tbody>
+        <tr><td><b>1 · Doel bepalen</b></td><td>Voor wie is het beeld en wat moet het tonen?</td><td>Groepen benoemen per stap</td></tr>
+        <tr><td><b>2 · Breed verkennen</b></td><td>Welke richtingen zijn er allemaal mogelijk?</td><td>Text Iterator en een snel model</td></tr>
+        <tr><td><b>3 · Kiezen</b></td><td>Welke richting past bij dit pand en deze huurder?</td><td>Resultaten naast elkaar</td></tr>
+        <tr><td><b>4 · Verfijnen</b></td><td>Klopt elk detail, en blijft het pand echt?</td><td>Nano Banana Pro, Painter</td></tr>
+        <tr><td><b>5 · Vertellen</b></td><td>Welk verhaal vertelt de reeks of de film?</td><td>Kling en de Compositor</td></tr>
+        <tr><td><b>6 · Checken</b></td><td>Is alles correct en eerlijk in beeld?</td><td>Frame per frame nakijken</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- PROMPTTIPS -->
+<section id="prompttips">
+  <div class="wrap stack" style="gap:28px">
+    <div class="stack"><span class="badge ghost">Prompten als een pro</span><h2>Een goede prompt <span class="hl">heeft een vaste vorm.</span></h2><p class="lead">Schrijf je prompts in het Engels: de modellen begrijpen dat het best. Hieronder de prompts van vandaag, ontleed per onderdeel.</p></div>
+    <div class="grid2">
+      <div class="stack" style="gap:10px"><h3>Een beeldprompt, ontleed</h3>
+        <div class="prompt p-out"><span class="seg1">Furnish this exact space as a fully fitted-out interior</span> <span class="seg2">in the following style: biophilic green office, planter boxes, warm oak.</span> <span class="seg3">Keep the exact camera angle, room dimensions, windows and floor area.</span> <span class="seg4">Warm late-afternoon sunlight with soft shadows on the floor.</span> <span class="seg5">Photorealistic high-end architectural interior visualisation.</span></div>
+        <div class="anat"><span class="a1">Opdracht</span><span class="a2">Stijl</span><span class="a3">Wat blijft</span><span class="a4">Licht</span><span class="a5">Kwaliteit</span></div>
+      </div>
+      <div class="stack" style="gap:10px"><h3>Een videoprompt, ontleed</h3>
+        <div class="prompt p-out"><span class="seg1">Smooth cinematic gimbal dolly forward</span> <span class="seg2">between the planter boxes towards the lounge area.</span> <span class="seg3">Steady eye-level movement, very slow.</span> <span class="seg4">Warm late-afternoon sunlight, leaves sway gently.</span> <span class="seg5">No people, no warping, no flicker.</span></div>
+        <div class="anat"><span class="a1">Camera</span><span class="a2">Route</span><span class="a3">Tempo</span><span class="a4">Sfeer</span><span class="a5">Wat niet</span></div>
+      </div>
+    </div>
+    <div class="tips">
+      <div><b>Zeg wat blijft</b><span class="muted">Camera, ramen, vloer, architectuur. Wat je niet vastlegt, mag het model veranderen.</span></div>
+      <div><b>Wees concreet</b><span class="muted">"Warm oak, boucle chairs" in plaats van "mooi en gezellig".</span></div>
+      <div><b>Licht in een eigen zin</b><span class="muted">Licht bepaalt de sfeer meer dan de meubels. Verander het los van de inrichting.</span></div>
+      <div><b>Herhaal wat echt niet mag</b><span class="muted">"The room stays completely empty, nothing appears." Eén keer zeggen is soms niet genoeg.</span></div>
+      <div><b>Eén beweging per clip</b><span class="muted">Het verhaal maak je in de montage, door korte clips na elkaar te zetten.</span></div>
+      <div><b>Eén ding per keer</b><span class="muted">Verander telkens één onderdeel van je prompt, dan weet je wat het verschil maakte.</span></div>
+    </div>
+    <div class="grid2">
+      <div class="card stack" style="gap:8px"><span class="badge ghost">Vaag</span><p class="prompt" style="border:0;padding:0">Maak dit kantoor mooi en modern.</p><p class="muted small">Het model kiest alles zelf, ook het standpunt en het licht.</p></div>
+      <div class="card stack" style="gap:8px"><span class="badge">Concreet</span><p class="prompt" style="border:0;padding:0" id="pc">Furnish this exact office in a Scandinavian style: light oak desks, boucle chairs, white pendants. Keep the camera angle, windows and floor exactly the same. Calm morning daylight. Photorealistic.</p><div><button class="btn sec copy" data-copy="pc">Kopieer</button></div></div>
+    </div>
+    <div class="grid2">
+      <div class="stack" style="gap:12px"><h3>Zes camerabewegingen</h3>
+        <div class="terms" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+          <div><b>Push-in</b><p class="muted small">Naar een detail toe. Voor focus.</p></div>
+          <div><b>Pull-back</b><p class="muted small">Van detail naar overzicht. Voor een onthulling.</p></div>
+          <div><b>Pan</b><p class="muted small">Draaien op één plek. Om de ruimte te tonen.</p></div>
+          <div><b>Orbit</b><p class="muted small">Rond een plek cirkelen. Voor diepte.</p></div>
+          <div><b>Crane</b><p class="muted small">Omhoog naar een overzicht. Voor schaal.</p></div>
+          <div><b>Tracking</b><p class="muted small">Zijwaarts meeschuiven. Voor parallax.</p></div>
+        </div>
+      </div>
+      <div class="stack" style="gap:12px"><h3>Woorden voor licht</h3>
+        <div class="terms" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+          <div><b>Golden hour</b><p class="muted small">Warm, laag zonlicht met lange schaduwen.</p></div>
+          <div><b>Morning daylight</b><p class="muted small">Fris en helder, zachte schaduwen.</p></div>
+          <div><b>Overcast</b><p class="muted small">Egaal en rustig, bijna geen schaduw.</p></div>
+          <div><b>Blue hour</b><p class="muted small">Blauwe lucht buiten, warm binnen.</p></div>
+          <div><b>Lamps on</b><p class="muted small">Binnenverlichting aan, gezellig.</p></div>
+          <div><b>Soft shadows</b><p class="muted small">Vriendelijk, zonder harde contrasten.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="stack" style="gap:12px"><h3>Prompt-recepten voor elke vraag</h3>
+      <div class="tablebox"><table>
+        <thead><tr><th>Je vraag</th><th>Sleutelwoorden in je prompt</th></tr></thead>
+        <tbody>
+          <tr><td><b>Hoe ziet deze lege ruimte er ingericht uit?</b></td><td>Furnish this exact space · in the style of … · Keep the camera angle</td></tr>
+          <tr><td><b>Hoe voelt dit 's avonds?</b></td><td>Change only the lighting · Keep every object · Blue hour, lamps on</td></tr>
+          <tr><td><b>Wat als hier een zithoek komt?</b></td><td>Turn the painted strokes into … · Remove every stroke · Keep the architecture</td></tr>
+          <tr><td><b>Hoe beleef je de ruimte?</b></td><td>One camera move · Slow and steady · No people, no flicker</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<!-- TROUBLESHOOTING -->
+<section id="misloopt">
+  <div class="wrap stack" style="gap:22px">
+    <div class="stack"><span class="badge ghost">Als het misloopt</span><h2>Vijf problemen, <span class="hl">vijf oplossingen.</span></h2><p class="lead">Blijft iets fout gaan? Pas de prompt aan in plaats van opnieuw te runnen en op geluk te hopen.</p></div>
+    <div class="tablebox"><table>
+      <thead><tr><th>Wat je ziet</th><th>Wat je doet</th></tr></thead>
+      <tbody>
+        <tr><td><b>Het standpunt verschuift</b></td><td>Voeg toe: "Keep the exact camera angle and perspective." Of gebruik Qwen Multiangle voor bewuste camerabewegingen.</td></tr>
+        <tr><td><b>Er komt te veel bij</b></td><td>Zeg wat er niet mag: "Do not add any other objects." Teken in de Painter preciezer.</td></tr>
+        <tr><td><b>De video vervormt</b></td><td>Maak de beweging trager en eenvoudiger: "very slow, steady, no warping". Kies één beweging.</td></tr>
+        <tr><td><b>Het licht klopt niet</b></td><td>Beschrijf het licht in een aparte zin, met tijdstip en richting: "late-afternoon sunlight through the windows".</td></tr>
+        <tr><td><b>Alles lijkt op elkaar</b></td><td>Maak de stijlen in je lijst meer verschillend: andere materialen, kleuren en meubels per regel.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- VERANTWOORD -->
+<section id="verantwoord">
+  <div class="wrap grid2">
+    <div class="stack" style="gap:16px"><span class="badge ghost">Wat AI (nog) niet kan</span><h2>Snel en goed, <span class="hl">maar geen landmeter.</span></h2>
+      <ul class="stack" style="gap:8px;padding-left:20px;margin:0">
+        <li>Het verzint soms dingen erbij.</li>
+        <li>Het levert geen exacte maten of oppervlaktes.</li>
+        <li>Niet elke run is raak, ook niet met een goede prompt.</li>
+        <li>Tekst en logo's in beelden kloppen zelden.</li>
+        <li>Clips duren ongeveer 5 seconden. Langer vraagt montage.</li>
+      </ul>
+    </div>
+    <div class="stack" style="gap:14px"><span class="badge ghost">Voor je publiceert</span><h2>Drie <span class="hl">checks.</span></h2>
+      <div class="card"><b>Klopt het pand?</b><p class="muted small">Ramen, vloer en architectuur zoals in het echt.</p></div>
+      <div class="card"><b>Is het eerlijk?</b><p class="muted small">Geen elementen die het pand niet heeft of niet kan krijgen.</p></div>
+      <div class="card"><b>Staat het erbij?</b><p class="muted small">Vermeld "AI-visualisatie" bij het beeld.</p></div>
+      <div class="learn"><b>Een beeld mag inspireren, niet misleiden.</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- OEFENEN -->
+<section id="oefenen">
+  <div class="wrap stack" style="gap:22px">
+    <div class="stack"><span class="badge ghost">Zelf oefenen</span><h2>Zes oefeningen <span class="hl">voor na vandaag.</span></h2><p class="lead">Elke oefening duurt ongeveer een kwartier. Gebruik een foto van een eigen pand. Vink af wat je gedaan hebt; dat onthoudt deze browser.</p></div>
+    <div class="tips" id="oef"></div>
+  </div>
+</section>
+
+<!-- IO -->
+<section id="io">
+  <div class="wrap stack" style="gap:22px">
+    <div class="stack"><span class="badge ghost">Partnership</span><h2>Waar iO <span class="hl">verder kan helpen.</span></h2></div>
+    <div class="grid3">
+      <div class="card"><h3>Flows als tool</h3><p class="muted small" style="margin-top:8px">Wij bouwen de flows en publiceren ze als eenvoudige app: jullie team dropt een foto en krijgt stijlen, standpunten en een film terug.</p></div>
+      <div class="card"><h3>Een WDP-beeldstijl</h3><p class="muted small" style="margin-top:8px">Een eigen stijlmodel, zodat elk pand in dezelfde herkenbare look wordt gevisualiseerd.</p></div>
+      <div class="card"><h3>Formats en talen</h3><p class="muted small" style="margin-top:8px">Eén render wordt elke banner en elk social format, met voice-overs in meerdere talen.</p></div>
+      <div class="card"><h3>Een film per pand</h3><p class="muted small" style="margin-top:8px">Storyboard van onze art directors, uitgewerkt tot een open After Effects-file die jullie kunnen hergebruiken.</p></div>
+      <div class="card"><h3>Opvolgsessie</h3><p class="muted small" style="margin-top:8px">Na een maand samen jullie eigen resultaten bekijken en de flows bijsturen.</p></div>
+      <div class="card"><h3>Training voor het team</h3><p class="muted small" style="margin-top:8px">Dezelfde dag voor andere collega's, op maat van hun eigen vragen en panden.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- QUIZ -->
 <section id="quiz">
   <div class="wrap grid2">
@@ -663,6 +808,12 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
   $('#b-copy').addEventListener('click',e=>copyText($('#b-out').innerText,e.currentTarget));
   $('#b-rand').addEventListener('click',()=>{const r=(n)=>Math.floor(Math.random()*n);$('#b-room').selectedIndex=r(5);sel.selectedIndex=r(15);$('#b-light').selectedIndex=r(4);build()});
   build();
+
+  // exercises checklist (per-viewer, browser only)
+  const OEF=[['Drie stijlen voor één lege ruimte','Import, Text Iterator met drie regels, Nano Banana 2 Lite.'],['Twee nieuwe standpunten','Je favoriete stijl door Qwen Edit Multiangle: 45° links en rechts.'],['Eén clip van leeg naar ingericht','Kling First & Last Frame met je lege foto als begin.'],['Een zithoek bijtekenen','Painter op een foto, daarna Nano Banana Pro met de render-prompt.'],['Dezelfde ruimte in avondlicht','Nano Banana Pro met "Change only the lighting".'],['Een montage van 10 seconden','Drie clips en muziek in de Compositor, exporteren naar mp4.']];
+  let done={}; try{done=JSON.parse(localStorage.getItem('wdp-oef')||'{}')}catch(e){}
+  $('#oef').innerHTML=OEF.map((o,i)=>`<div><label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="oef-${i}" ${done[i]?'checked':''} style="width:20px;height:20px;margin-top:3px;accent-color:var(--blue)"><span><b>${i+1} · ${o[0]}</b><span class="muted">${o[1]}</span></span></label></div>`).join('');
+  $$('#oef input').forEach((c,i)=>c.addEventListener('change',()=>{done[i]=c.checked;try{localStorage.setItem('wdp-oef',JSON.stringify(done))}catch(e){}}));
 
   // quiz
   const Q=[
