@@ -218,23 +218,25 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     <div class="logo">i<span>O</span></div>
     <nav class="nav" aria-label="Secties">
       <a href="#start">Start</a>
-      <a href="#arne">Wie is Arne</a>
       <a href="#weave">Figma Weave</a>
       <a href="#nodes">Nodes</a>
+      <a href="#denkwijze">Denkwijze</a>
+      <a href="#prompttips">Prompttips</a>
+      <a href="#misloopt">Als het misloopt</a>
       <a href="#stap-1">Stap 1</a>
       <a href="#stap-2">Stap 2</a>
       <a href="#stap-3">Stap 3</a>
       <a href="#stap-4">Stap 4</a>
       <a href="#stap-5">Stap 5</a>
       <a href="#stap-6">Stap 6</a>
+      <a href="#workflow">Delen als workflow</a>
+      <a href="#claude">Weave in Claude</a>
       <a href="#promptbouwer">Promptbouwer</a>
-      <a href="#denkwijze">Denkwijze</a>
-      <a href="#prompttips">Prompttips</a>
-      <a href="#misloopt">Als het misloopt</a>
       <a href="#oefenen">Oefenen</a>
       <a href="#quiz">Quiz</a>
       <a href="#credits">Credits</a>
     </nav>
+    <button class="btn sec" id="theme" type="button" style="padding:8px 14px;font-size:.85rem;flex:none">Donker</button>
   </div>
 </header>
 
@@ -254,37 +256,10 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </figure>
   </div>
 </section>
-
-<section id="arne">
-  <div class="wrap grid2">
-    <div class="stack">
-      <span class="badge ghost">Wie staat er vandaag voor je</span>
-      <h2>Arne Goossens, <span class="hl">creative technologist bij iO.</span></h2>
-      <p>Ik werk in het creatieve team van iO, tussen designers, motion designers en UI-designers. Mijn rol: AI-workflows bouwen die hun werk sneller en schaalbaarder maken, zonder dat het creatieve vakmanschap verdwijnt. De designer blijft aan het stuur, AI doet het zware, herhalende werk.</p>
-      <p>Wat ik vandaag met jullie deel, komt rechtstreeks uit die praktijk: hoe je met één foto, een goede prompt en een paar nodes tot een volwaardige beeldreeks en film komt.</p>
-      <div class="chips"><span class="chip">Figma Weave</span><span class="chip">Krea</span><span class="chip">Claude</span><span class="chip">After Effects</span><span class="chip">Blender</span><span class="chip">ElevenLabs</span><span class="chip">Adobe Firefly</span><span class="chip">Figma</span></div>
-    </div>
-    <div class="stack">
-      <figure>
-        <div class="media"><video src="media/showreel.mp4" poster="media/showreel_poster.jpg" controls playsinline preload="metadata"></video></div>
-        <figcaption>Showreel, 47 seconden. Een selectie van mijn werk. Zet het geluid aan.</figcaption>
-      </figure>
-      <div class="proj">
-        <div><b>Sibelga</b><span>Case video, storyboard naar open After Effects-file</span></div>
-        <div><b>Cambozola</b><span>Case video met dezelfde motion workflow</span></div>
-        <div><b>Kuraray EVAL</b><span>3D motion in Blender met Claude, twee versies in één dag</span></div>
-        <div><b>BOIP</b><span>AI-beeldbank met een eigen Firefly-stijlmodel</span></div>
-        <div><b>Brussels Airport</b><span>Figma-plugin: één beeld in elke banner en taal</span></div>
-        <div><b>Secret Santa</b><span>Dagelijkse mini-games die bezoekers laten terugkomen</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="weave">
   <div class="wrap grid2">
     <div class="stack">
-      <span class="badge ghost">De tool</span>
+      <span class="badge ghost">Het platform</span>
       <h2>Wat is <span class="hl">Figma Weave?</span></h2>
       <p>Figma Weave is een canvas in je browser waarop je AI-modellen en bewerkingstools aan elkaar koppelt. Je kiest per stap het model dat het best past: het ene voor beelden, een ander voor video, nog een ander voor camerabewegingen. Het resultaat van de ene stap gaat automatisch naar de volgende.</p>
       <p>Weave begon als <b>Weavy</b>, een start-up uit Tel Aviv (2024). Eind oktober 2025 maakte Figma bekend dat het Weavy overneemt en verder uitbouwt als Figma Weave.</p>
@@ -294,11 +269,10 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
       <div class="card"><h3>Veel modellen, één plek</h3><p class="muted small" style="margin-top:8px">Vandaag gebruikten we onder meer Nano Banana, Qwen, Kling en de Compositor, allemaal op hetzelfde canvas.</p></div>
       <div class="card"><h3>Jij houdt de regie</h3><p class="muted small" style="margin-top:8px">Elke tussenstap is zichtbaar. Je ziet waar het misloopt en past alleen die node aan.</p></div>
       <div class="card"><h3>Bulk in één klik</h3><p class="muted small" style="margin-top:8px">Eén lijst met vijftien stijlen geeft vijftien interieurs, zonder vijftien keer te prompten.</p></div>
-      <div class="card"><h3>Herbruikbaar</h3><p class="muted small" style="margin-top:8px">Een flow die werkt, gebruik je opnieuw met een nieuwe foto. Of je deelt hem als eenvoudige tool met collega's.</p></div>
+      <div class="card"><h3>Herbruikbaar</h3><p class="muted small" style="margin-top:8px">Een flow die werkt, gebruik je opnieuw met een nieuwe foto. Of je deelt hem als eenvoudige workflow met collega's.</p></div>
     </div>
   </div>
 </section>
-
 <section id="nodes">
   <div class="wrap stack" style="gap:28px">
     <div class="stack">
@@ -334,7 +308,6 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </div>
   </div>
 </section>
-
 <section id="canvas">
   <div class="wrap stack" style="gap:24px">
     <div class="stack">
@@ -352,188 +325,6 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </div>
   </div>
 </section>
-
-<!-- STEP 1 -->
-<section id="stap-1">
-  <div class="wrap">
-    <div class="step-head"><div class="num">01</div><div class="stack" style="gap:10px"><h2>Eén foto, <span class="hl">vijftien stijlen.</span></h2><p class="lead">We gaven Weave één foto van een lege kantoorruimte en een lijst met vijftien interieurstijlen. Eén klik later stonden er vijftien ingerichte versies naast elkaar.</p>
-      <div class="nodes-used"><span>Import</span><i>→</i><span>Text Iterator</span><i>→</i><span>Prompt met variabele</span><i>→</i><span>Nano Banana 2 Lite</span><i>→</i><span>Unpack</span></div>
-      <div class="facts"><span class="fact"><em>15</em> beelden</span><span class="fact"><em>45</em> credits in totaal</span><span class="fact"><em>3</em> credits per beeld</span></div></div></div>
-    <div class="grid2" style="margin-bottom:28px">
-      <div class="stack" style="gap:10px">
-        <div class="ba" id="ba1" style="--x:50%">
-          <img src="media/leeg_kantoor.jpg" alt="Lege kantoorruimte">
-          <img class="after" src="media/bulk_03.jpg" alt="Dezelfde ruimte als groen kantoor ingericht">
-          <div class="bar"></div><div class="knob">⇆</div>
-          <span class="tag l">Voor</span><span class="tag r">Na</span>
-          <input type="range" min="0" max="100" value="50" id="ba1-r" aria-label="Schuif tussen voor en na">
-        </div>
-        <p class="small muted">Sleep over het beeld. Standpunt, ramen en vloeroppervlak blijven exact gelijk; alleen de inrichting verandert.</p>
-      </div>
-      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Een <b>Text Iterator</b> vullen met één stijl per regel.</li><li>Een <b>variabele</b> in je prompt zetten, zodat elke regel een eigen beeld wordt.</li><li><b>Goedkoop verkennen</b> met een snel model, en pas daarna verfijnen met een duurder model.</li><li>Altijd zeggen <b>wat moet blijven</b>: camerastandpunt, afmetingen, ramen.</li></ul></div>
-    </div>
-    <h3 style="margin-bottom:14px">De vijftien stijlen</h3>
-    <div class="viewer">
-      <div class="media"><img id="g1-big" src="media/bulk_01.jpg" alt=""></div>
-      <div class="stack" style="gap:8px"><span class="badge ghost" id="g1-n">Stijl 1 van 15</span><p id="g1-s" style="font-weight:600"></p><p class="small muted">Klik op een miniatuur om de stijl en het resultaat te bekijken.</p></div>
-    </div>
-    <div class="gal" id="g1"></div>
-    <div class="grid2" style="margin-top:34px">
-      <div class="stack" style="gap:10px">
-        <h3>De prompt maakt het verschil</h3>
-        <p class="muted">Onze eerste versie gaf koel licht en zette in elk beeld een vergaderbox. Door het licht en de vrijheid van de stijl expliciet te beschrijven, werd versie 2 warmer en gevarieerder.</p>
-        <div class="tabs" role="tablist"><button role="tab" aria-selected="false" data-v="media/v1_koel.jpg" id="v1">Versie 1: koel</button><button role="tab" aria-selected="true" data-v="media/v2_warm.jpg" id="v2">Versie 2: warm</button></div>
-        <div class="media"><img id="vimg" src="media/v2_warm.jpg" alt="Vergelijking prompt versie 1 en 2"></div>
-      </div>
-      <div class="stack" style="gap:10px">
-        <h3>De prompt die we gebruikten</h3>
-        <div class="prompt" id="p1">Furnish this exact space as a fully fitted-out interior in the following style: <span class="var">{stijl}</span>. Keep the exact camera angle, perspective, room dimensions, windows and floor area of the input photo. Add realistic furniture, lighting, materials and decoration that fit the style. Warm late-afternoon sunlight falling through the windows with soft shadows on the floor. Photorealistic high-end architectural interior visualisation, realistic scale, rich material detail.</div>
-        <div><button class="btn sec copy" data-copy="p1">Kopieer prompt</button></div>
-        <p class="small muted">Het deel tussen haakjes vult Weave per regel in met een stijl uit de lijst.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STEP 2 -->
-<section id="stap-2">
-  <div class="wrap">
-    <div class="step-head"><div class="num">02</div><div class="stack" style="gap:10px"><h2>Eén ruimte, <span class="hl">elk perspectief.</span></h2><p class="lead">We kozen de groene stijl en vroegen nieuwe camerastandpunten. Twee manieren, met een duidelijk verschil.</p>
-      <div class="facts"><span class="fact">Via prompt: Nano Banana Pro</span><span class="fact">Via camera: Qwen Edit Multiangle, <em>4</em> credits per beeld</span></div></div></div>
-    <div class="tabs" role="tablist" id="t2"><button role="tab" aria-selected="true" data-k="prompt">2a · Via prompt</button><button role="tab" aria-selected="false" data-k="qwen">2b · Via camera</button></div>
-    <div class="grid3" id="g2"></div>
-    <div class="grid2" style="margin-top:26px">
-      <div class="card stack" style="gap:8px"><h3 id="t2-h">Via prompt</h3><p class="muted" id="t2-p">We beschreven zes standpunten in tekst. Nano Banana Pro houdt stijl, meubels en licht perfect vast, maar het standpunt verschuift maar weinig. Handig voor variatie, niet voor echte camerabewegingen.</p></div>
-      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Kies de node die <b>doet wat je vraagt</b>, niet de duurste.</li><li>Echte camerarotatie stuur je beter <b>in graden</b> dan in woorden.</li><li>Consistente beelden zijn goud waard voor een <b>brochure</b> en voor <b>begin- en eindframes</b> van een animatie.</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<!-- STEP 3 -->
-<section id="stap-3">
-  <div class="wrap">
-    <div class="step-head"><div class="num">03</div><div class="stack" style="gap:10px"><h2>Van beeld <span class="hl">naar beweging.</span></h2><p class="lead">Met Kling maakten we van stilstaande beelden korte clips. De sterkste truc: een beginbeeld en een eindbeeld geven, en het model vult de beweging ertussen in.</p>
-      <div class="facts"><span class="fact">Kling First &amp; Last Frame: <em>55</em> credits</span><span class="fact">Kling 4.0: <em>40</em> credits</span><span class="fact">Clips van ongeveer <em>5</em> seconden</span></div></div></div>
-    <div class="grid3">
-      <figure><div class="media"><video src="media/clip_a.mp4" poster="media/clip_a_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>A · Leeg naar ingericht.</b> Begin: de lege foto. Einde: het groene kantoor.</figcaption></figure>
-      <figure><div class="media"><video src="media/clip_c.mp4" poster="media/clip_c_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>C · Pan van links naar rechts.</b> Twee standpunten uit stap 2 als begin en einde.</figcaption></figure>
-      <figure><div class="media"><video src="media/clip_d.mp4" poster="media/clip_d_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>D · Push-in naar de lounge.</b> Eén beeld en een camerabeweging in de prompt.</figcaption></figure>
-    </div>
-    <div class="grid2" style="margin-top:26px">
-      <div class="stack" style="gap:10px"><h3>Prompt voor clip A</h3><div class="prompt" id="p3">Locked-off camera with a very slow push-in. The empty office transforms into the fully furnished biophilic interior: planters, plants, desks and lounge furniture appear naturally in place while warm late-afternoon sunlight fills the room. Smooth, realistic, no people, no camera shake, no flicker.</div><div><button class="btn sec copy" data-copy="p3">Kopieer prompt</button></div></div>
-      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Met <b>begin- en eindframe</b> bepaal jij waar de clip start en eindigt.</li><li>Beschrijf <b>één duidelijke camerabeweging</b> per clip.</li><li>Sluit af met wat je níet wil: <b>geen mensen, geen flikkering, geen vervorming</b>.</li><li>Clip B bewoog te weinig en viel af. Niet elke run is raak; dat hoort erbij.</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<!-- STEP 4 -->
-<section id="stap-4">
-  <div class="wrap">
-    <div class="step-head"><div class="num">04</div><div class="stack" style="gap:10px"><h2>Monteren <span class="hl">zonder Weave te verlaten.</span></h2><p class="lead">De Compositor is een eenvoudige montagetafel in Weave. Je sleept clips naar lagen, knipt ze op de tijdlijn, zet muziek en stem eronder en exporteert een mp4.</p></div></div>
-    <div class="grid3">
-      <div class="card"><h3>Lagen</h3><p class="muted small" style="margin-top:8px">Elke clip krijgt een laag. Wat bovenaan staat, ligt in beeld bovenop. Handig voor een logo of eindbeeld dat over de film heen komt.</p></div>
-      <div class="card"><h3>Tijdlijn</h3><p class="muted small" style="margin-top:8px">Sleep de randen van een clip om in- en uitpunt te kiezen. Een donker stuk is een deel van de clip dat je niet gebruikt.</p></div>
-      <div class="card"><h3>Audio en export</h3><p class="muted small" style="margin-top:8px">Muziek en voice-over komen als aparte lagen. Zet het volume van de muziek lager onder de stem. Export levert een mp4 op.</p></div>
-    </div>
-    <div class="learn" style="margin-top:20px"><h3>Wat je hier leert</h3><ul><li>Video-lagen <b>dempen</b> als je eigen muziek gebruikt.</li><li>Kijk na elke wijziging <b>frame per frame</b> rond de cuts: een gat van één frame geeft een zwarte flits.</li><li>De export van de Compositor speelt iets minder vloeiend af dan de losse clips. Voor de allerhoogste kwaliteit monteer je de clips nadien in een videobewerker.</li></ul></div>
-  </div>
-</section>
-
-<!-- STEP 5 -->
-<section id="stap-5">
-  <div class="wrap">
-    <div class="step-head"><div class="num">05</div><div class="stack" style="gap:10px"><h2>De film: <span class="hl">eerst leeg, dan gevuld.</span></h2><p class="lead">De stem vertelt het verhaal, het beeld volgt. Zolang de stem over een lege ruimte spreekt, blijft de ruimte leeg. Pas op "een plek waar je elke dag wil binnenstappen" vult ze zich.</p>
-      <div class="facts"><span class="fact"><em>15</em> seconden</span><span class="fact">Stem: ElevenLabs, Nederlands</span><span class="fact">Muziek: MiniMax, <em>108</em> bpm</span><span class="fact">Cuts op de beat</span></div></div></div>
-    <div class="grid2">
-      <figure><div class="media"><video src="media/wdp_film.mp4" poster="media/wdp_film_poster.jpg" controls playsinline preload="metadata"></video></div><figcaption>Het eindresultaat, met geluid.</figcaption></figure>
-      <div class="stack" style="gap:14px">
-        <div class="card stack" style="gap:6px"><h3>De voice-over</h3><p class="muted">"Een lege ruimte. Of een plek waar je elke dag wil binnenstappen. Ontdek wat jouw ruimte kan worden."</p></div>
-        <div class="learn"><h3>Wat je hier leert</h3><ul><li>Laat de <b>stem de beelden sturen</b>, niet andersom.</li><li><b>Nooit hetzelfde shot twee keer.</b> Een kortere film is beter dan opvulling.</li><li>Knip <b>op de beat</b> van de muziek, dan voelt de film strak.</li><li>Geef tekst op het eindbeeld <b>genoeg leestijd</b>: hier bijna drie seconden.</li></ul></div>
-      </div>
-    </div>
-    <h3 style="margin:30px 0 12px">De opbouw op de tijdlijn</h3>
-    <div class="tl"><div class="tl-in">
-      <div class="tl-row" id="tl"></div>
-      <div class="tl-vo"><span style="left:0.9%;width:7%">Een lege ruimte.</span><span style="left:21.7%;width:19.6%">Of een plek waar je elke dag wil binnenstappen.</span><span style="left:81.5%;width:13.5%">Ontdek wat jouw ruimte kan worden.</span></div>
-      <div class="tl-ax"><span>0 s</span><span>3 s</span><span>6 s</span><span>9 s</span><span>12 s</span><span>15 s</span></div>
-    </div></div>
-    <div class="grid2" style="margin-top:22px">
-      <div class="stack" style="gap:10px"><h3>Prompt voor een leeg shot</h3><div class="prompt" id="p5">Fast, smooth low-angle dolly push forward across the completely empty office floor towards the windows, the camera glides just above the light wooden floor. The room stays completely empty: no furniture, no plants, no people, nothing appears. Bright clean daylight, cinematic architectural film, steady stabilized motion.</div><div><button class="btn sec copy" data-copy="p5">Kopieer prompt</button></div></div>
-      <figure><div class="media"><video src="media/leeg_e1.mp4" poster="media/leeg_e1_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption>Het lege shot dat uit die prompt kwam. Herhaal "nothing appears" gerust: anders zet het model toch meubels neer.</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- STEP 6 -->
-<section id="stap-6">
-  <div class="wrap">
-    <div class="step-head"><div class="num">06</div><div class="stack" style="gap:10px"><h2>Bijtekenen <span class="hl">en het licht kiezen.</span></h2><p class="lead">In de lobby tekenden we met de Painter ruwe vormen op de foto: groen voor planten, oranje voor een zithoek. Nano Banana Pro maakte er echte meubels van, en een tweede stap zette de lobby in avondlicht.</p>
-      <div class="nodes-used"><span>Import</span><i>→</i><span>Painter</span><i>→</i><span>Nano Banana Pro</span><i>→</i><span>Nano Banana Pro</span></div>
-      <div class="facts"><span class="fact"><em>11</em> credits per beeld</span></div></div></div>
-    <div class="tabs" role="tablist" id="t6">
-      <button role="tab" aria-selected="false" data-i="media/lobby.jpg" data-c="De originele lobby, zoals hij er vandaag uitziet.">Origineel</button>
-      <button role="tab" aria-selected="false" data-i="media/g6_schets.jpg" data-c="Met de Painter ruwe vormen getekend: waar moet wat komen?">1 · Schets</button>
-      <button role="tab" aria-selected="true" data-i="media/g6_render.jpg" data-c="Nano Banana Pro maakt van de vormen echte meubels. Trap, galerij en vloer blijven gelijk.">2 · Render</button>
-      <button role="tab" aria-selected="false" data-i="media/g6_avond.jpg" data-c="Zelfde beeld, enkel het licht verandert: lampen aan, blauw uur buiten.">3 · Avondlicht</button>
-    </div>
-    <div class="grid2">
-      <figure><div class="media"><img id="t6-img" src="media/g6_render.jpg" alt="Lobby, stap van bijtekenen"></div><figcaption id="t6-cap">Nano Banana Pro maakt van de vormen echte meubels. Trap, galerij en vloer blijven gelijk.</figcaption></figure>
-      <div class="stack" style="gap:14px">
-        <div class="learn"><h3>Wat je hier leert</h3><ul><li>Je hoeft niet te kunnen tekenen: <b>ruwe vlakken</b> volstaan.</li><li>Zeg in de prompt <b>wat elke kleur betekent</b> en dat de strepen moeten verdwijnen.</li><li>Het model voegt soms meer toe dan je tekende. <b>Hoe preciezer je tekent en beschrijft</b>, hoe minder het verzint.</li></ul></div>
-        <div class="card stack" style="gap:6px"><h3>Een leermoment: Relight 2.0</h3><p class="muted">We probeerden eerst de aparte Relight 2.0-node. Die veranderde de architectuur zelf: de tegelvloer werd parket, er kwamen ramen bij en het beeld werd bijgesneden. Voor vastgoed is dat onbruikbaar. Met Nano Banana Pro en de opdracht "verander enkel het licht" bleef alles staan.</p></div>
-      </div>
-    </div>
-    <details style="margin-top:20px"><summary>Bekijk de twee prompts</summary>
-      <div class="stack" style="gap:12px">
-        <div class="prompt" id="p6a">Turn the coloured strokes painted on this lobby photo into real, photorealistic furniture and decor at exactly those positions and sizes. Read each painted shape as the object it suggests: sofas and armchairs, a low coffee table, a rug, large green plants, floor lamps. Remove every painted stroke completely. Keep the architecture, staircase, gallery, floor, camera angle and daylight exactly the same. Warm, inviting, photorealistic architectural photography.</div>
-        <div><button class="btn sec copy" data-copy="p6a">Kopieer render-prompt</button></div>
-        <div class="prompt" id="p6b">Change only the lighting of this exact photo to a warm golden evening mood: low sunset light glowing through the glass doors and windows, the ceiling spots and floor lamps switched on with a warm glow, soft long shadows on the floor, a slightly darker blue-hour sky outside. Keep every piece of furniture, every plant, the floor tiles, the walls, the staircase, the architecture and the camera angle exactly the same. Photorealistic architectural photography.</div>
-        <div><button class="btn sec copy" data-copy="p6b">Kopieer licht-prompt</button></div>
-      </div>
-    </details>
-  </div>
-</section>
-
-<!-- PROMPT BUILDER -->
-<section id="promptbouwer">
-  <div class="wrap stack" style="gap:26px">
-    <div class="stack">
-      <span class="badge ghost">Zelf proberen</span>
-      <h2>Bouw je eigen <span class="hl">interieurprompt.</span></h2>
-      <p class="lead">Elke goede prompt van vandaag had dezelfde vijf delen. Kies hieronder je eigen invulling, kopieer de prompt en plak hem in een Prompt-node in Weave.</p>
-      <div class="anat"><span class="a1">1 · Opdracht</span><span class="a2">2 · Stijl</span><span class="a3">3 · Wat blijft</span><span class="a4">4 · Licht</span><span class="a5">5 · Kwaliteit</span></div>
-    </div>
-    <div class="builder">
-      <div class="card stack" style="gap:14px">
-        <div class="field"><label for="b-room">Welke ruimte?</label><select id="b-room"><option value="this exact empty office space">Lege kantoorruimte</option><option value="this exact empty lobby">Lege lobby</option><option value="this exact empty warehouse hall">Lege magazijnhal</option><option value="this exact empty meeting room">Lege vergaderzaal</option><option value="this exact empty canteen">Lege kantine</option></select></div>
-        <div class="field"><label for="b-style">Welke stijl?</label><select id="b-style"></select></div>
-        <div class="field"><label for="b-light">Welk licht?</label><select id="b-light"><option value="Warm late-afternoon sunlight falling through the windows with soft shadows on the floor.">Late namiddag, warm</option><option value="Fresh, bright morning daylight with crisp soft shadows.">Frisse ochtend</option><option value="Overcast, even daylight with very soft shadows, calm and neutral.">Bewolkt, egaal</option><option value="Golden evening light, warm lamps switched on, a blue-hour sky outside the windows.">Avond, lampen aan</option></select></div>
-        <div class="field"><label for="b-extra">Iets dat zeker in beeld moet? (optioneel)</label><input type="text" id="b-extra" placeholder="bv. a large green wall with the WDP logo"></div>
-      </div>
-      <div class="stack" style="gap:10px">
-        <div class="prompt p-out" id="b-out"></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="b-copy">Kopieer prompt</button><button class="btn sec" id="b-rand">Verras me</button></div>
-        <p class="small muted">Tip: zet deze prompt in Weave tussen een Import-node met je foto en een Nano Banana-node. Eerst met Nano Banana 2 Lite verkennen, je favoriet daarna met Nano Banana Pro.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TIPS -->
-<section id="tips">
-  <div class="wrap stack" style="gap:24px">
-    <div class="stack"><span class="badge ghost">Spiekbrief</span><h2>Regie houden, <span class="hl">ook met AI.</span></h2></div>
-    <div class="tips">
-      <div><b>Zeg altijd wat blijft</b><span class="muted">Camerastandpunt, ramen, vloer, architectuur. Wat je niet vastlegt, verandert het model.</span></div>
-      <div><b>Goedkoop verkennen, duur verfijnen</b><span class="muted">Eerst vijftien snelle varianten, dan enkel je favoriet in hoge kwaliteit.</span></div>
-      <div><b>Eén stijl, één verhaal</b><span class="muted">Kies na de verkenning één richting en hou die vast in alle volgende stappen.</span></div>
-      <div><b>Begin- en eindframe</b><span class="muted">Zo bepaal jij de beweging in plaats van het model.</span></div>
-      <div><b>Geen herhaling</b><span class="muted">Twee bijna gelijke shots in één film verzwakken alles. Liever korter.</span></div>
-      <div><b>Check de prijs vooraf</b><span class="muted">Selecteer nodes en kijk rechtsonder: Weave toont de credits vóór je op Run klikt.</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- DENKWIJZE -->
 <section id="denkwijze">
   <div class="wrap stack" style="gap:24px">
@@ -551,7 +342,20 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </table></div>
   </div>
 </section>
-
+<!-- TIPS -->
+<section id="tips">
+  <div class="wrap stack" style="gap:24px">
+    <div class="stack"><span class="badge ghost">Spiekbrief</span><h2>Regie houden, <span class="hl">ook met AI.</span></h2></div>
+    <div class="tips">
+      <div><b>Zeg altijd wat blijft</b><span class="muted">Camerastandpunt, ramen, vloer, architectuur. Wat je niet vastlegt, verandert het model.</span></div>
+      <div><b>Goedkoop verkennen, duur verfijnen</b><span class="muted">Eerst vijftien snelle varianten, dan enkel je favoriet in hoge kwaliteit.</span></div>
+      <div><b>Eén stijl, één verhaal</b><span class="muted">Kies na de verkenning één richting en hou die vast in alle volgende stappen.</span></div>
+      <div><b>Begin- en eindframe</b><span class="muted">Zo bepaal jij de beweging in plaats van het model.</span></div>
+      <div><b>Geen herhaling</b><span class="muted">Twee bijna gelijke shots in één film verzwakken alles. Liever korter.</span></div>
+      <div><b>Check de prijs vooraf</b><span class="muted">Selecteer nodes en kijk rechtsonder: Weave toont de credits vóór je op Run klikt.</span></div>
+    </div>
+  </div>
+</section>
 <!-- PROMPTTIPS -->
 <section id="prompttips">
   <div class="wrap stack" style="gap:28px">
@@ -613,7 +417,6 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </div>
   </div>
 </section>
-
 <!-- TROUBLESHOOTING -->
 <section id="misloopt">
   <div class="wrap stack" style="gap:22px">
@@ -630,7 +433,194 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </table></div>
   </div>
 </section>
-
+<!-- STEP 1 -->
+<section id="stap-1">
+  <div class="wrap">
+    <div class="step-head"><div class="num">01</div><div class="stack" style="gap:10px"><h2>Eén foto, <span class="hl">vijftien stijlen.</span></h2><p class="lead">We gaven Weave één foto van een lege kantoorruimte en een lijst met vijftien interieurstijlen. Eén klik later stonden er vijftien ingerichte versies naast elkaar.</p>
+      <div class="nodes-used"><span>Import</span><i>→</i><span>Text Iterator</span><i>→</i><span>Prompt met variabele</span><i>→</i><span>Nano Banana 2 Lite</span><i>→</i><span>Unpack</span></div>
+      <div class="facts"><span class="fact"><em>15</em> beelden</span><span class="fact"><em>45</em> credits in totaal</span><span class="fact"><em>3</em> credits per beeld</span></div></div></div>
+    <div class="grid2" style="margin-bottom:28px">
+      <div class="stack" style="gap:10px">
+        <div class="ba" id="ba1" style="--x:50%">
+          <img src="media/leeg_kantoor.jpg" alt="Lege kantoorruimte">
+          <img class="after" src="media/bulk_03.jpg" alt="Dezelfde ruimte als groen kantoor ingericht">
+          <div class="bar"></div><div class="knob">⇆</div>
+          <span class="tag l">Voor</span><span class="tag r">Na</span>
+          <input type="range" min="0" max="100" value="50" id="ba1-r" aria-label="Schuif tussen voor en na">
+        </div>
+        <p class="small muted">Sleep over het beeld. Standpunt, ramen en vloeroppervlak blijven exact gelijk; alleen de inrichting verandert.</p>
+      </div>
+      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Een <b>Text Iterator</b> vullen met één stijl per regel.</li><li>Een <b>variabele</b> in je prompt zetten, zodat elke regel een eigen beeld wordt.</li><li><b>Goedkoop verkennen</b> met een snel model, en pas daarna verfijnen met een duurder model.</li><li>Altijd zeggen <b>wat moet blijven</b>: camerastandpunt, afmetingen, ramen.</li></ul></div>
+    </div>
+    <h3 style="margin-bottom:14px">De vijftien stijlen</h3>
+    <div class="viewer">
+      <div class="media"><img id="g1-big" src="media/bulk_01.jpg" alt=""></div>
+      <div class="stack" style="gap:8px"><span class="badge ghost" id="g1-n">Stijl 1 van 15</span><p id="g1-s" style="font-weight:600"></p><p class="small muted">Klik op een miniatuur om de stijl en het resultaat te bekijken.</p></div>
+    </div>
+    <div class="gal" id="g1"></div>
+    <div class="grid2" style="margin-top:34px">
+      <div class="stack" style="gap:10px">
+        <h3>De prompt maakt het verschil</h3>
+        <p class="muted">Onze eerste versie gaf koel licht en zette in elk beeld een vergaderbox. Door het licht en de vrijheid van de stijl expliciet te beschrijven, werd versie 2 warmer en gevarieerder.</p>
+        <div class="tabs" role="tablist"><button role="tab" aria-selected="false" data-v="media/v1_koel.jpg" id="v1">Versie 1: koel</button><button role="tab" aria-selected="true" data-v="media/v2_warm.jpg" id="v2">Versie 2: warm</button></div>
+        <div class="media"><img id="vimg" src="media/v2_warm.jpg" alt="Vergelijking prompt versie 1 en 2"></div>
+      </div>
+      <div class="stack" style="gap:10px">
+        <h3>De prompt die we gebruikten</h3>
+        <div class="prompt" id="p1">Furnish this exact space as a fully fitted-out interior in the following style: <span class="var">{stijl}</span>. Keep the exact camera angle, perspective, room dimensions, windows and floor area of the input photo. Add realistic furniture, lighting, materials and decoration that fit the style. Warm late-afternoon sunlight falling through the windows with soft shadows on the floor. Photorealistic high-end architectural interior visualisation, realistic scale, rich material detail.</div>
+        <div><button class="btn sec copy" data-copy="p1">Kopieer prompt</button></div>
+        <p class="small muted">Het deel tussen haakjes vult Weave per regel in met een stijl uit de lijst.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- STEP 2 -->
+<section id="stap-2">
+  <div class="wrap">
+    <div class="step-head"><div class="num">02</div><div class="stack" style="gap:10px"><h2>Eén ruimte, <span class="hl">elk perspectief.</span></h2><p class="lead">We kozen de groene stijl en vroegen nieuwe camerastandpunten. Twee manieren, met een duidelijk verschil.</p>
+      <div class="facts"><span class="fact">Via prompt: Nano Banana Pro</span><span class="fact">Via camera: Qwen Edit Multiangle, <em>4</em> credits per beeld</span></div></div></div>
+    <div class="tabs" role="tablist" id="t2"><button role="tab" aria-selected="true" data-k="prompt">2a · Via prompt</button><button role="tab" aria-selected="false" data-k="qwen">2b · Via camera</button></div>
+    <div class="grid3" id="g2"></div>
+    <div class="grid2" style="margin-top:26px">
+      <div class="card stack" style="gap:8px"><h3 id="t2-h">Via prompt</h3><p class="muted" id="t2-p">We beschreven zes standpunten in tekst. Nano Banana Pro houdt stijl, meubels en licht perfect vast, maar het standpunt verschuift maar weinig. Handig voor variatie, niet voor echte camerabewegingen.</p></div>
+      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Kies de node die <b>doet wat je vraagt</b>, niet de duurste.</li><li>Echte camerarotatie stuur je beter <b>in graden</b> dan in woorden.</li><li>Consistente beelden zijn goud waard voor een <b>brochure</b> en voor <b>begin- en eindframes</b> van een animatie.</li></ul></div>
+    </div>
+  </div>
+</section>
+<!-- STEP 3 -->
+<section id="stap-3">
+  <div class="wrap">
+    <div class="step-head"><div class="num">03</div><div class="stack" style="gap:10px"><h2>Van beeld <span class="hl">naar beweging.</span></h2><p class="lead">Met Kling maakten we van stilstaande beelden korte clips. De sterkste truc: een beginbeeld en een eindbeeld geven, en het model vult de beweging ertussen in.</p>
+      <div class="facts"><span class="fact">Kling First &amp; Last Frame: <em>55</em> credits</span><span class="fact">Kling 4.0: <em>40</em> credits</span><span class="fact">Clips van ongeveer <em>5</em> seconden</span></div></div></div>
+    <div class="grid3">
+      <figure><div class="media"><video src="media/clip_a.mp4" poster="media/clip_a_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>A · Leeg naar ingericht.</b> Begin: de lege foto. Einde: het groene kantoor.</figcaption></figure>
+      <figure><div class="media"><video src="media/clip_c.mp4" poster="media/clip_c_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>C · Pan van links naar rechts.</b> Twee standpunten uit stap 2 als begin en einde.</figcaption></figure>
+      <figure><div class="media"><video src="media/clip_d.mp4" poster="media/clip_d_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption><b>D · Push-in naar de lounge.</b> Eén beeld en een camerabeweging in de prompt.</figcaption></figure>
+    </div>
+    <div class="grid2" style="margin-top:26px">
+      <div class="stack" style="gap:10px"><h3>Prompt voor clip A</h3><div class="prompt" id="p3">Locked-off camera with a very slow push-in. The empty office transforms into the fully furnished biophilic interior: planters, plants, desks and lounge furniture appear naturally in place while warm late-afternoon sunlight fills the room. Smooth, realistic, no people, no camera shake, no flicker.</div><div><button class="btn sec copy" data-copy="p3">Kopieer prompt</button></div></div>
+      <div class="learn"><h3>Wat je hier leert</h3><ul><li>Met <b>begin- en eindframe</b> bepaal jij waar de clip start en eindigt.</li><li>Beschrijf <b>één duidelijke camerabeweging</b> per clip.</li><li>Sluit af met wat je níet wil: <b>geen mensen, geen flikkering, geen vervorming</b>.</li><li>Clip B bewoog te weinig en viel af. Niet elke run is raak; dat hoort erbij.</li></ul></div>
+    </div>
+  </div>
+</section>
+<!-- STEP 4 -->
+<section id="stap-4">
+  <div class="wrap">
+    <div class="step-head"><div class="num">04</div><div class="stack" style="gap:10px"><h2>Monteren <span class="hl">zonder Weave te verlaten.</span></h2><p class="lead">De Compositor is een eenvoudige montagetafel in Weave. Je sleept clips naar lagen, knipt ze op de tijdlijn, zet muziek en stem eronder en exporteert een mp4.</p></div></div>
+    <div class="grid3">
+      <div class="card"><h3>Lagen</h3><p class="muted small" style="margin-top:8px">Elke clip krijgt een laag. Wat bovenaan staat, ligt in beeld bovenop. Handig voor een logo of eindbeeld dat over de film heen komt.</p></div>
+      <div class="card"><h3>Tijdlijn</h3><p class="muted small" style="margin-top:8px">Sleep de randen van een clip om in- en uitpunt te kiezen. Een donker stuk is een deel van de clip dat je niet gebruikt.</p></div>
+      <div class="card"><h3>Audio en export</h3><p class="muted small" style="margin-top:8px">Muziek en voice-over komen als aparte lagen. Zet het volume van de muziek lager onder de stem. Export levert een mp4 op.</p></div>
+    </div>
+    <div class="learn" style="margin-top:20px"><h3>Wat je hier leert</h3><ul><li>Video-lagen <b>dempen</b> als je eigen muziek gebruikt.</li><li>Kijk na elke wijziging <b>frame per frame</b> rond de cuts: een gat van één frame geeft een zwarte flits.</li><li>De export van de Compositor speelt iets minder vloeiend af dan de losse clips. Voor de allerhoogste kwaliteit monteer je de clips nadien in een videobewerker.</li></ul></div>
+  </div>
+</section>
+<!-- STEP 5 -->
+<section id="stap-5">
+  <div class="wrap">
+    <div class="step-head"><div class="num">05</div><div class="stack" style="gap:10px"><h2>De film: <span class="hl">eerst leeg, dan gevuld.</span></h2><p class="lead">De stem vertelt het verhaal, het beeld volgt. Zolang de stem over een lege ruimte spreekt, blijft de ruimte leeg. Pas op "een plek waar je elke dag wil binnenstappen" vult ze zich.</p>
+      <div class="facts"><span class="fact"><em>15</em> seconden</span><span class="fact">Stem: ElevenLabs, Nederlands</span><span class="fact">Muziek: MiniMax, <em>108</em> bpm</span><span class="fact">Cuts op de beat</span></div></div></div>
+    <div class="grid2">
+      <figure><div class="media"><video src="media/wdp_film.mp4" poster="media/wdp_film_poster.jpg" controls playsinline preload="metadata"></video></div><figcaption>Het eindresultaat, met geluid.</figcaption></figure>
+      <div class="stack" style="gap:14px">
+        <div class="card stack" style="gap:6px"><h3>De voice-over</h3><p class="muted">"Een lege ruimte. Of een plek waar je elke dag wil binnenstappen. Ontdek wat jouw ruimte kan worden."</p></div>
+        <div class="learn"><h3>Wat je hier leert</h3><ul><li>Laat de <b>stem de beelden sturen</b>, niet andersom.</li><li><b>Nooit hetzelfde shot twee keer.</b> Een kortere film is beter dan opvulling.</li><li>Knip <b>op de beat</b> van de muziek, dan voelt de film strak.</li><li>Geef tekst op het eindbeeld <b>genoeg leestijd</b>: hier bijna drie seconden.</li></ul></div>
+      </div>
+    </div>
+    <h3 style="margin:30px 0 12px">De opbouw op de tijdlijn</h3>
+    <div class="tl"><div class="tl-in">
+      <div class="tl-row" id="tl"></div>
+      <div class="tl-vo"><span style="left:0.9%;width:7%">Een lege ruimte.</span><span style="left:21.7%;width:19.6%">Of een plek waar je elke dag wil binnenstappen.</span><span style="left:81.5%;width:13.5%">Ontdek wat jouw ruimte kan worden.</span></div>
+      <div class="tl-ax"><span>0 s</span><span>3 s</span><span>6 s</span><span>9 s</span><span>12 s</span><span>15 s</span></div>
+    </div></div>
+    <div class="grid2" style="margin-top:22px">
+      <div class="stack" style="gap:10px"><h3>Prompt voor een leeg shot</h3><div class="prompt" id="p5">Fast, smooth low-angle dolly push forward across the completely empty office floor towards the windows, the camera glides just above the light wooden floor. The room stays completely empty: no furniture, no plants, no people, nothing appears. Bright clean daylight, cinematic architectural film, steady stabilized motion.</div><div><button class="btn sec copy" data-copy="p5">Kopieer prompt</button></div></div>
+      <figure><div class="media"><video src="media/leeg_e1.mp4" poster="media/leeg_e1_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption>Het lege shot dat uit die prompt kwam. Herhaal "nothing appears" gerust: anders zet het model toch meubels neer.</figcaption></figure>
+    </div>
+  </div>
+</section>
+<!-- STEP 6 -->
+<section id="stap-6">
+  <div class="wrap">
+    <div class="step-head"><div class="num">06</div><div class="stack" style="gap:10px"><h2>Bijtekenen <span class="hl">en het licht kiezen.</span></h2><p class="lead">In de lobby tekenden we met de Painter ruwe vormen op de foto: groen voor planten, oranje voor een zithoek. Nano Banana Pro maakte er echte meubels van, en een tweede stap zette de lobby in avondlicht.</p>
+      <div class="nodes-used"><span>Import</span><i>→</i><span>Painter</span><i>→</i><span>Nano Banana Pro</span><i>→</i><span>Nano Banana Pro</span></div>
+      <div class="facts"><span class="fact"><em>11</em> credits per beeld</span></div></div></div>
+    <div class="tabs" role="tablist" id="t6">
+      <button role="tab" aria-selected="false" data-i="media/lobby.jpg" data-c="De originele lobby, zoals hij er vandaag uitziet.">Origineel</button>
+      <button role="tab" aria-selected="false" data-i="media/g6_schets.jpg" data-c="Met de Painter ruwe vormen getekend: waar moet wat komen?">1 · Schets</button>
+      <button role="tab" aria-selected="true" data-i="media/g6_render.jpg" data-c="Nano Banana Pro maakt van de vormen echte meubels. Trap, galerij en vloer blijven gelijk.">2 · Render</button>
+      <button role="tab" aria-selected="false" data-i="media/g6_avond.jpg" data-c="Zelfde beeld, enkel het licht verandert: lampen aan, blauw uur buiten.">3 · Avondlicht</button>
+    </div>
+    <div class="grid2">
+      <figure><div class="media"><img id="t6-img" src="media/g6_render.jpg" alt="Lobby, stap van bijtekenen"></div><figcaption id="t6-cap">Nano Banana Pro maakt van de vormen echte meubels. Trap, galerij en vloer blijven gelijk.</figcaption></figure>
+      <div class="stack" style="gap:14px">
+        <div class="learn"><h3>Wat je hier leert</h3><ul><li>Je hoeft niet te kunnen tekenen: <b>ruwe vlakken</b> volstaan.</li><li>Zeg in de prompt <b>wat elke kleur betekent</b> en dat de strepen moeten verdwijnen.</li><li>Het model voegt soms meer toe dan je tekende. <b>Hoe preciezer je tekent en beschrijft</b>, hoe minder het verzint.</li></ul></div>
+        <div class="card stack" style="gap:6px"><h3>Een leermoment: Relight 2.0</h3><p class="muted">We probeerden eerst de aparte Relight 2.0-node. Die veranderde de architectuur zelf: de tegelvloer werd parket, er kwamen ramen bij en het beeld werd bijgesneden. Voor vastgoed is dat onbruikbaar. Met Nano Banana Pro en de opdracht "verander enkel het licht" bleef alles staan.</p></div>
+      </div>
+    </div>
+    <details style="margin-top:20px"><summary>Bekijk de twee prompts</summary>
+      <div class="stack" style="gap:12px">
+        <div class="prompt" id="p6a">Turn the coloured strokes painted on this lobby photo into real, photorealistic furniture and decor at exactly those positions and sizes. Read each painted shape as the object it suggests: sofas and armchairs, a low coffee table, a rug, large green plants, floor lamps. Remove every painted stroke completely. Keep the architecture, staircase, gallery, floor, camera angle and daylight exactly the same. Warm, inviting, photorealistic architectural photography.</div>
+        <div><button class="btn sec copy" data-copy="p6a">Kopieer render-prompt</button></div>
+        <div class="prompt" id="p6b">Change only the lighting of this exact photo to a warm golden evening mood: low sunset light glowing through the glass doors and windows, the ceiling spots and floor lamps switched on with a warm glow, soft long shadows on the floor, a slightly darker blue-hour sky outside. Keep every piece of furniture, every plant, the floor tiles, the walls, the staircase, the architecture and the camera angle exactly the same. Photorealistic architectural photography.</div>
+        <div><button class="btn sec copy" data-copy="p6b">Kopieer licht-prompt</button></div>
+      </div>
+    </details>
+  </div>
+</section>
+<!-- WORKFLOW DELEN -->
+<section id="workflow">
+  <div class="wrap stack" style="gap:22px">
+    <div class="stack"><span class="badge ghost">Delen als workflow</span><h2>Van canvas <span class="hl">naar workflow.</span></h2><p class="lead">Een flow die werkt, deel je als eenvoudige workflow. Collega's zien het canvas niet: ze droppen een foto en krijgen het resultaat.</p></div>
+    <div class="grid3">
+      <div class="card"><h3>1 · Output-node</h3><p class="muted small" style="margin-top:8px">Zet een <b>Output-node</b> achter het resultaat dat je wil delen.</p></div>
+      <div class="card"><h3>2 · Velden vastzetten</h3><p class="muted small" style="margin-top:8px">Open de <b>Tool-tab</b> en kies wat vast blijft en wat je collega mag invullen, zoals de foto.</p></div>
+      <div class="card"><h3>3 · Delen</h3><p class="muted small" style="margin-top:8px">Klik <b>Create tool</b>, geef een naam en beeld, en deel via <b>Share tool</b> met je team.</p></div>
+    </div>
+    <div class="learn">In Weave heten de knoppen nog "tool". <b>Pas je de flow aan, dan duw je de nieuwe versie door met Update tool.</b></div>
+  </div>
+</section>
+<!-- CLAUDE -->
+<section id="claude">
+  <div class="wrap stack" style="gap:22px">
+    <div class="stack"><span class="badge ghost">Weave vanuit Claude</span><h2>Je workflows, <span class="hl">gewoon vragen in Claude.</span></h2><p class="lead">Weave zit in de Figma-connector van Claude. Zo zoek en run je jullie workflows in een gesprek, zonder het canvas te openen.</p></div>
+    <div class="grid3">
+      <div class="card"><h3>1 · Koppelen</h3><p class="muted small" style="margin-top:8px">In Weave: <b>Settings, Profile, Linked accounts</b>. Koppel je Figma-account en kies de juiste workspace.</p></div>
+      <div class="card"><h3>2 · Verbinden</h3><p class="muted small" style="margin-top:8px">Zet in Claude de <b>Figma-connector</b> aan. Bij een bedrijfsaccount laat een beheerder die soms eerst toe.</p></div>
+      <div class="card"><h3>3 · Vragen</h3><p class="muted small" style="margin-top:8px">"Welke Weave-workflows heb ik?" of "Run onze WDP-workflow op deze foto." Claude toont <b>eerst de kost</b> en wacht op je akkoord.</p></div>
+    </div>
+    <div class="grid3">
+      <div class="card"><h3>Wat het kan</h3><p class="muted small" style="margin-top:8px">Workflows zoeken en runnen, een foto uploaden, een model rechtstreeks runnen, resultaten ophalen.</p></div>
+      <div class="card"><h3>Op het canvas</h3><p class="muted small" style="margin-top:8px">Flows bouwen en aanpassen doe je in Weave zelf.</p></div>
+      <div class="card"><h3>Credits</h3><p class="muted small" style="margin-top:8px">Elke run kost Weave-credits, net zoals op het canvas. Daarvoor heb je minstens een Starter-abonnement nodig.</p></div>
+    </div>
+    <p class="small muted">Meer uitleg: <a href="https://help.weavy.ai/en/articles/16202764-running-tools-from-external-agents-mcp" target="_blank" rel="noopener">Weave help, running tools from external agents</a>.</p>
+  </div>
+</section>
+<!-- PROMPT BUILDER -->
+<section id="promptbouwer">
+  <div class="wrap stack" style="gap:26px">
+    <div class="stack">
+      <span class="badge ghost">Zelf proberen</span>
+      <h2>Bouw je eigen <span class="hl">interieurprompt.</span></h2>
+      <p class="lead">Elke goede prompt van vandaag had dezelfde vijf delen. Kies hieronder je eigen invulling, kopieer de prompt en plak hem in een Prompt-node in Weave.</p>
+      <div class="anat"><span class="a1">1 · Opdracht</span><span class="a2">2 · Stijl</span><span class="a3">3 · Wat blijft</span><span class="a4">4 · Licht</span><span class="a5">5 · Kwaliteit</span></div>
+    </div>
+    <div class="builder">
+      <div class="card stack" style="gap:14px">
+        <div class="field"><label for="b-room">Welke ruimte?</label><select id="b-room"><option value="this exact empty office space">Lege kantoorruimte</option><option value="this exact empty lobby">Lege lobby</option><option value="this exact empty warehouse hall">Lege magazijnhal</option><option value="this exact empty meeting room">Lege vergaderzaal</option><option value="this exact empty canteen">Lege kantine</option></select></div>
+        <div class="field"><label for="b-style">Welke stijl?</label><select id="b-style"></select></div>
+        <div class="field"><label for="b-light">Welk licht?</label><select id="b-light"><option value="Warm late-afternoon sunlight falling through the windows with soft shadows on the floor.">Late namiddag, warm</option><option value="Fresh, bright morning daylight with crisp soft shadows.">Frisse ochtend</option><option value="Overcast, even daylight with very soft shadows, calm and neutral.">Bewolkt, egaal</option><option value="Golden evening light, warm lamps switched on, a blue-hour sky outside the windows.">Avond, lampen aan</option></select></div>
+        <div class="field"><label for="b-extra">Iets dat zeker in beeld moet? (optioneel)</label><input type="text" id="b-extra" placeholder="bv. a large green wall with the WDP logo"></div>
+      </div>
+      <div class="stack" style="gap:10px">
+        <div class="prompt p-out" id="b-out"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="b-copy">Kopieer prompt</button><button class="btn sec" id="b-rand">Verras me</button></div>
+        <p class="small muted">Tip: zet deze prompt in Weave tussen een Import-node met je foto en een Nano Banana-node. Eerst met Nano Banana 2 Lite verkennen, je favoriet daarna met Nano Banana Pro.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- VERANTWOORD -->
 <section id="verantwoord">
   <div class="wrap stack" style="gap:22px">
@@ -643,21 +633,19 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     <div class="learn"><b>Een beeld mag inspireren, niet misleiden.</b></div>
   </div>
 </section>
-
 <!-- OEFENEN -->
 <section id="oefenen">
   <div class="wrap stack" style="gap:22px">
-    <div class="stack"><span class="badge ghost">Zelf oefenen</span><h2>Zes oefeningen <span class="hl">voor na vandaag.</span></h2><p class="lead">Elke oefening duurt ongeveer een kwartier. Gebruik een foto van een eigen pand. Vink af wat je gedaan hebt; dat onthoudt deze browser.</p></div>
+    <div class="stack"><span class="badge ghost">Zelf oefenen</span><h2>Acht oefeningen <span class="hl">voor na vandaag.</span></h2><p class="lead">Elke oefening duurt ongeveer een kwartier. Gebruik een foto van een eigen pand. Vink af wat je gedaan hebt; dat onthoudt deze browser.</p></div>
     <div class="tips" id="oef"></div>
   </div>
 </section>
-
 <!-- IO -->
 <section id="io">
   <div class="wrap stack" style="gap:22px">
     <div class="stack"><span class="badge ghost">Partnership</span><h2>Waar iO <span class="hl">verder kan helpen.</span></h2></div>
     <div class="grid3">
-      <div class="card"><h3>Flows als tool</h3><p class="muted small" style="margin-top:8px">Wij bouwen de flows en publiceren ze als eenvoudige app: jullie team dropt een foto en krijgt stijlen, standpunten en een film terug.</p></div>
+      <div class="card"><h3>Workflows voor het team</h3><p class="muted small" style="margin-top:8px">Wij bouwen de flows en delen ze als eenvoudige workflow: jullie team dropt een foto en krijgt stijlen, standpunten en een film terug.</p></div>
       <div class="card"><h3>Een WDP-beeldstijl</h3><p class="muted small" style="margin-top:8px">Een eigen stijlmodel, zodat elk pand in dezelfde herkenbare look wordt gevisualiseerd.</p></div>
       <div class="card"><h3>Formats en talen</h3><p class="muted small" style="margin-top:8px">Eén render wordt elke banner en elk social format, met voice-overs in meerdere talen.</p></div>
       <div class="card"><h3>Een film per pand</h3><p class="muted small" style="margin-top:8px">Storyboard van onze art directors, uitgewerkt tot een open After Effects-file die jullie kunnen hergebruiken.</p></div>
@@ -666,7 +654,6 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </div>
   </div>
 </section>
-
 <!-- QUIZ -->
 <section id="quiz">
   <div class="wrap grid2">
@@ -681,7 +668,6 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </div>
   </div>
 </section>
-
 <!-- CREDITS -->
 <section id="credits">
   <div class="wrap stack" style="gap:22px">
@@ -699,16 +685,43 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
     </table></div>
   </div>
 </section>
-
 <section id="contact">
   <div class="wrap">
     <div class="contact">
-      <div class="stack" style="gap:12px"><h2>Vragen of verder bouwen?</h2><p style="opacity:.9">Wil je een flow uitbreiden, een eigen tool voor je team publiceren of een volgende ruimte aanpakken? Laat het me weten, dan bouwen we verder.</p></div>
+      <div class="stack" style="gap:12px"><h2>Vragen of verder bouwen?</h2><p style="opacity:.9">Wil je een flow uitbreiden, een eigen workflow voor je team delen of een volgende ruimte aanpakken? Laat het me weten, dan bouwen we verder.</p></div>
       <div class="stack" style="gap:10px"><b>Arne Goossens · iO</b><div class="mail"><code id="mail">arne.goossens@iodigital.com</code><button class="btn" id="mail-copy">Kopieer</button></div></div>
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </main>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('theme'),k='wdp-theme',m='light';
+try{m=localStorage.getItem(k)||'light'}catch(e){}
+function set(x){m=x;r.setAttribute('data-theme',x);if(b)b.textContent=x==='light'?'Donker':'Licht';try{localStorage.setItem(k,x)}catch(e){}}
+set(m);if(b)b.addEventListener('click',function(){set(m==='light'?'dark':'light')});})();
+</script>
+
 
 <footer><div class="wrap">WDP × iO · Weave-dag van 20 november 2026 · Beelden en film gemaakt in Figma Weave</div></footer>
 
@@ -802,7 +815,7 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
   build();
 
   // exercises checklist (per-viewer, browser only)
-  const OEF=[['Drie stijlen voor één lege ruimte','Import, Text Iterator met drie regels, Nano Banana 2 Lite.'],['Twee nieuwe standpunten','Je favoriete stijl door Qwen Edit Multiangle: 45° links en rechts.'],['Eén clip van leeg naar ingericht','Kling First & Last Frame met je lege foto als begin.'],['Een zithoek bijtekenen','Painter op een foto, daarna Nano Banana Pro met de render-prompt.'],['Dezelfde ruimte in avondlicht','Nano Banana Pro met "Change only the lighting".'],['Een montage van 10 seconden','Drie clips en muziek in de Compositor, exporteren naar mp4.']];
+  const OEF=[['Drie stijlen voor één lege ruimte','Import, Text Iterator met drie regels, Nano Banana 2 Lite.'],['Twee nieuwe standpunten','Je favoriete stijl door Qwen Edit Multiangle: 45° links en rechts.'],['Eén clip van leeg naar ingericht','Kling First & Last Frame met je lege foto als begin.'],['Een zithoek bijtekenen','Painter op een foto, daarna Nano Banana Pro met de render-prompt.'],['Dezelfde ruimte in avondlicht','Nano Banana Pro met "Change only the lighting".'],['Een montage van 10 seconden','Drie clips en muziek in de Compositor, exporteren naar mp4.'],['Je eerste workflow delen','Output-node, velden vastzetten in de Tool-tab, Create tool en delen met een collega.'],['Je workflow runnen vanuit Claude','Figma-connector aan, nieuwe foto uploaden, de kost goedkeuren.']];
   let done={}; try{done=JSON.parse(localStorage.getItem('wdp-oef')||'{}')}catch(e){}
   $('#oef').innerHTML=OEF.map((o,i)=>`<div><label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="oef-${i}" ${done[i]?'checked':''} style="width:20px;height:20px;margin-top:3px;accent-color:var(--blue)"><span><b>${i+1} · ${o[0]}</b><span class="muted">${o[1]}</span></span></label></div>`).join('');
   $$('#oef input').forEach((c,i)=>c.addEventListener('change',()=>{done[i]=c.checked;try{localStorage.setItem('wdp-oef',JSON.stringify(done))}catch(e){}}));
