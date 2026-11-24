@@ -162,13 +162,6 @@ details[open] summary{margin-bottom:12px}
 .tabs button[aria-selected="true"]{background:var(--blue);color:var(--on-blue);border-color:var(--blue)}
 
 /* timeline */
-.tl{position:relative;background:var(--surface);border-radius:var(--r);padding:20px;overflow-x:auto}
-.tl-in{min-width:720px}
-.tl-row{display:flex;height:44px;border-radius:8px;overflow:hidden}
-.tl-row div{display:flex;align-items:center;padding:0 8px;font-size:.74rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;border-right:2px solid var(--surface)}
-.tl-vo{position:relative;height:26px;margin-top:8px}
-.tl-vo span{position:absolute;top:0;height:26px;border-radius:6px;background:var(--wire-txt);color:#fff;font-size:.7rem;font-weight:700;padding:0 8px;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
-.tl-ax{display:flex;justify-content:space-between;font:500 .72rem var(--f-mono);color:var(--muted);margin-top:8px}
 
 /* builder */
 .builder{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:24px;align-items:start}
@@ -527,12 +520,6 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
         <div class="learn"><h3>Wat je hier leert</h3><ul><li>Laat de <b>stem de beelden sturen</b>, niet andersom.</li><li><b>Nooit hetzelfde shot twee keer.</b> Een kortere film is beter dan opvulling.</li><li>Knip <b>op de beat</b> van de muziek, dan voelt de film strak.</li><li>Geef tekst op het eindbeeld <b>genoeg leestijd</b>: hier bijna drie seconden.</li></ul></div>
       </div>
     </div>
-    <h3 style="margin:30px 0 12px">De opbouw op de tijdlijn</h3>
-    <div class="tl"><div class="tl-in">
-      <div class="tl-row" id="tl"></div>
-      <div class="tl-vo"><span style="left:0.9%;width:7%">Een lege ruimte.</span><span style="left:21.7%;width:19.6%">Of een plek waar je elke dag wil binnenstappen.</span><span style="left:81.5%;width:13.5%">Ontdek wat jouw ruimte kan worden.</span></div>
-      <div class="tl-ax"><span>0 s</span><span>3 s</span><span>6 s</span><span>9 s</span><span>12 s</span><span>15 s</span></div>
-    </div></div>
     <div class="grid2" style="margin-top:22px">
       <div class="stack" style="gap:10px"><h3>Prompt voor een leeg shot</h3><div class="prompt" id="p5">Fast, smooth low-angle dolly push forward across the completely empty office floor towards the windows, the camera glides just above the light wooden floor. The room stays completely empty: no furniture, no plants, no people, nothing appears. Bright clean daylight, cinematic architectural film, steady stabilized motion.</div><div><button class="btn sec copy" data-copy="p5">Kopieer prompt</button></div></div>
       <figure><div class="media"><video src="media/leeg_e1.mp4" poster="media/leeg_e1_poster.jpg" controls muted playsinline preload="metadata"></video></div><figcaption>Het lege shot dat uit die prompt kwam. Herhaal "nothing appears" gerust: anders zet het model toch meubels neer.</figcaption></figure>
@@ -638,20 +625,6 @@ html{scroll-behavior:smooth;scroll-padding-top:72px}
   <div class="wrap stack" style="gap:22px">
     <div class="stack"><span class="badge ghost">Zelf oefenen</span><h2>Acht oefeningen <span class="hl">voor na vandaag.</span></h2><p class="lead">Elke oefening duurt ongeveer een kwartier. Gebruik een foto van een eigen pand. Vink af wat je gedaan hebt; dat onthoudt deze browser.</p></div>
     <div class="tips" id="oef"></div>
-  </div>
-</section>
-<!-- IO -->
-<section id="io">
-  <div class="wrap stack" style="gap:22px">
-    <div class="stack"><span class="badge ghost">Partnership</span><h2>Waar iO <span class="hl">verder kan helpen.</span></h2></div>
-    <div class="grid3">
-      <div class="card"><h3>Workflows voor het team</h3><p class="muted small" style="margin-top:8px">Wij bouwen de flows en delen ze als eenvoudige workflow: jullie team dropt een foto en krijgt stijlen, standpunten en een film terug.</p></div>
-      <div class="card"><h3>Een WDP-beeldstijl</h3><p class="muted small" style="margin-top:8px">Een eigen stijlmodel, zodat elk pand in dezelfde herkenbare look wordt gevisualiseerd.</p></div>
-      <div class="card"><h3>Formats en talen</h3><p class="muted small" style="margin-top:8px">Eén render wordt elke banner en elk social format, met voice-overs in meerdere talen.</p></div>
-      <div class="card"><h3>Een film per pand</h3><p class="muted small" style="margin-top:8px">Storyboard van onze art directors, uitgewerkt tot een open After Effects-file die jullie kunnen hergebruiken.</p></div>
-      <div class="card"><h3>Opvolgsessie</h3><p class="muted small" style="margin-top:8px">Na een maand samen jullie eigen resultaten bekijken en de flows bijsturen.</p></div>
-      <div class="card"><h3>Training voor het team</h3><p class="muted small" style="margin-top:8px">Dezelfde dag voor andere collega's, op maat van hun eigen vragen en panden.</p></div>
-    </div>
   </div>
 </section>
 <!-- QUIZ -->
@@ -789,10 +762,6 @@ set(m);if(b)b.addEventListener('click',function(){set(m==='light'?'dark':'light'
 
   // step 6 tabs
   $$('#t6 button').forEach(b=>b.addEventListener('click',()=>{$$('#t6 button').forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');$('#t6-img').src=b.dataset.i;$('#t6-cap').textContent=b.dataset.c}));
-
-  // timeline (seconds, measured in the export)
-  const segs=[[0,1.7,'Leeg: push-in','#5E5B57'],[1.7,3.4,'Leeg: laag shot','#7A7671'],[3.4,6.25,'De ruimte vult zich','#0000D2'],[6.25,7.93,'Planters','#2E8B57'],[7.93,9.64,'Kraanshot','#3A9E68'],[9.64,11.33,'Lounge','#4BAF78'],[11.33,15,'WDP-eindbeeld','#E8732A']];
-  $('#tl').innerHTML=segs.map(s=>`<div style="width:${((s[1]-s[0])/15*100).toFixed(2)}%;background:${s[3]}" title="${s[0]} tot ${s[1]} s">${s[2]}</div>`).join('');
 
   // prompt builder
   const sel=$('#b-style'); styles.forEach((s,i)=>{const o=document.createElement('option');o.value=s;o.textContent=nl[i].replace(' (onze keuze)','');sel.appendChild(o)}); sel.selectedIndex=2;
