@@ -663,10 +663,10 @@ body{padding-bottom:44px}
       <div class="card" style="margin-top:16px" id="bestCard">
         <div class="toolbar" style="margin-bottom:6px"><div><h3>Waar komt alles terecht</h3><div class="note" id="bestSub"></div></div></div>
         <div class="scroll"><table class="plan best" id="bestTable"></table></div>
-        <p class="note" style="margin-bottom:0">Per markt en taal komt er een eigen ad set met de juiste doelgroep. In elke ad set staat één dynamische advertentie met alle goedgekeurde bouwstenen: het platform combineert ze en geeft de best scorende combinaties meer budget. Alles gaat er als gepauzeerde draft heen.</p>
+        <p class="note" style="margin-bottom:0">Per markt en taal komt er een eigen ad set met de juiste doelgroep. In elke ad set staat één dynamische advertentie met alle goedgekeurde bouwstenen: het platform combineert ze en geeft de best scorende combinaties meer budget. De tool pusht alles rechtstreeks naar het platform.</p>
       </div>
       <div class="card io-only" style="margin-top:16px">
-        <div class="toolbar" style="margin-bottom:0"><div><h3>Export en feed</h3><div class="note">Enkel goedgekeurde bouwstenen gaan mee naar Ads Manager, als gepauzeerde draft.</div></div><button class="btn sm" id="zipDco">Download goedgekeurde varianten (ZIP)</button></div>
+        <div class="toolbar" style="margin-bottom:0"><div><h3>Export en feed</h3><div class="note">Enkel goedgekeurde bouwstenen gaan live, rechtstreeks vanuit de tool naar Meta en Google.</div></div><button class="btn sm" id="zipDco">Download goedgekeurde varianten (ZIP)</button></div>
         <details style="margin-top:12px"><summary class="note">Feed voor Ads Manager (concept)</summary>
           <div style="display:flex;justify-content:flex-end;margin:12px 0"><button class="btn sm line" id="copyJson">Kopieer</button></div>
           <pre class="json" id="dcoJson"></pre></details>
@@ -1198,7 +1198,7 @@ function renderDco() {
   $("#dcoSub").textContent = `uit ${bl.length} bouwstenen voor de ${f.naam}, over ${platsFor(f).length} kanalen. ${klant ? "Je keurt" : "Gazelle keurt"} ${bl.length} bouwstenen goed in plaats van ${total.toLocaleString("nl-BE")} losse ads.`;
   $("#dcoFormula").innerHTML = [["koppen",n[0]],["subregels",n[1]],["keurmerken",n[2]],["beelden",n[3]],["taal en markt",tm],["formaten over " + platsFor(f).length + " kanalen",nFk]].map(([l,x]) => `<span><b>${x}</b> ${l}</span>`).join("<i>×</i>") + `<i>=</i><span class="tot"><b>${total.toLocaleString("nl-BE")}</b> creatives</span>`;
   const al = $("#dcoAlles"); al.hidden = !klant; al.disabled = okN === bl.length;
-  $("#dcoOkNote").textContent = okN === bl.length ? "Alles goedgekeurd: alle varianten mogen als draft naar Ads Manager." : `${okN} goedgekeurd · ${chgN} aanpassing · ${bl.length - okN - chgN} open`;
+  $("#dcoOkNote").textContent = okN === bl.length ? "Alles goedgekeurd: de tool zet alle varianten rechtstreeks live op Meta en Google." : `${okN} goedgekeurd · ${chgN} aanpassing · ${bl.length - okN - chgN} open`;
   dcoI = ((dcoI % combos.length) + combos.length) % combos.length;
   const x = combos[dcoI];
   $("#dcoIdx").textContent = `Combinatie ${dcoI + 1} van ${combos.length}`;
@@ -1219,7 +1219,7 @@ function renderDco() {
         ${d.c ? `<div class="cm post">${esc(d.c)}</div>` : ""}</div>`; }).join("") + `</div>`; }).join("");
   const okC = okCombos(f);
   const all = okC.flatMap(x => platsFor(f).flatMap(P => PLAT[P].fks.map(fk => { const t = textsFor(x.v, x.L); return {kanaal: PLAT[P].naam, bestand: fname(x.v, fk, x.L).replace(".png", `_${x.key}.png`), taal: x.L, markt: LOCNAAM[x.v.loc], formaat: fk, kop: t.kop, subregel: t.sub, keurmerk: t.kw || null, beeld: x.v.beeld === "foto" ? "sfeerbeeld" : "packshot"}; })));
-  $("#dcoJson").textContent = JSON.stringify({campagne: `Koninklijke Gazelle · ${f.naam}`, template: "Gazelle productad v1", status: "PAUSED", goedgekeurd: `${all.length} van ${total} creatives`, creatives: all.slice(0, 30), meer: Math.max(0, all.length - 30)}, null, 2);
+  $("#dcoJson").textContent = JSON.stringify({campagne: `Koninklijke Gazelle · ${f.naam}`, template: "Gazelle productad v1", status: "ACTIVE", goedgekeurd: `${all.length} van ${total} creatives`, creatives: all.slice(0, 30), meer: Math.max(0, all.length - 30)}, null, 2);
   $("#zipDco").textContent = `Download goedgekeurde varianten (${all.length})`; $("#zipDco").disabled = !all.length;
 }
 function dcoGaNaar(f, k, o) {
@@ -1397,7 +1397,7 @@ function renderOk() {
   } else {
     if (st === "chg" || (st !== "check" && veranderd(f, x))) dec.innerHTML = veranderd(f, x) ? `<button class="btn sm" data-act="nieuw">Opslaan als versie ${x.versies.length + 1}</button><span class="note">De wijzigingen in Assets worden versie ${x.versies.length + 1}.</span>` : `<button class="btn sm" data-act="open">Aanpassen in Assets</button>`;
     else if (st === "check") dec.innerHTML = `<button class="btn sm" data-act="vrij">Gecheckt, klaarzetten voor Gazelle</button><button class="btn sm ghost" data-act="open">Nog aanpassen</button>`;
-    else dec.innerHTML = `<span class="note">${st === "ok" ? "Klaar om als draft naar het platform te gaan." : "Wacht op het oordeel van Gazelle."}</span><button class="btn sm ghost" data-act="open">Openen in Assets</button>`;
+    else dec.innerHTML = `<span class="note">${st === "ok" ? "Goedgekeurd: de tool zet dit rechtstreeks live op het platform." : "Wacht op het oordeel van Gazelle."}</span><button class="btn sm ghost" data-act="open">Openen in Assets</button>`;
   }
   dec.addEventListener("click", e => {
     const act = e.target.dataset.act; if (!act) return;
@@ -1585,7 +1585,7 @@ function renderBest(f, x) {
   $("#bestTable").innerHTML = `<thead><tr><th>Platform</th><th>Formaten</th><th>Campagne</th><th>Looptijd en budget</th><th>Ad sets</th><th class="num">Creatives</th><th>Status</th></tr></thead><tbody>` +
     platsFor(f).map(P => { const pv = planVan(f, P); const d = PLATDEST[P], pst = effS(okState(f.id, P).s), nOk = okC.length * PLAT[P].fks.length, nAll = combos.length * PLAT[P].fks.length;
       const klaar = pst === "ok" && nOk > 0;
-      return `<tr><td><b>${PLAT[P].naam}</b><small>${esc(d.kanaal)} · ${esc(d.plaats)}</small></td><td>${PLAT[P].fks.join(", ")}</td><td><code>${esc(campNaam(f, P))}</code></td><td>${pv ? `${dd(pv.start)} tot ${dd(pv.einde)}<small>€ ${Math.round(pv.budget).toLocaleString("nl-BE")} · uit het mediaplan</small>` : '<span class="note">geen mediaplan</span>'}</td><td>${tm}<small>${esc(paren.join(", "))}</small></td><td class="num"><b>${nOk}</b><small>van ${nAll}</small></td><td>${klaar ? '<span class="tag ok"><span class="d"></span>Klaar als draft</span>' : pst !== "ok" ? `<span class="tag blue"><span class="d"></span>Wacht op ${PLAT[P].naam}</span>` : '<span class="tag warn"><span class="d"></span>Wacht op DCO-varianten</span>'}</td></tr>`; }).join("") + `</tbody>`;
+      return `<tr><td><b>${PLAT[P].naam}</b><small>${esc(d.kanaal)} · ${esc(d.plaats)}</small></td><td>${PLAT[P].fks.join(", ")}</td><td><code>${esc(campNaam(f, P))}</code></td><td>${pv ? `${dd(pv.start)} tot ${dd(pv.einde)}<small>€ ${Math.round(pv.budget).toLocaleString("nl-BE")} · uit het mediaplan</small>` : '<span class="note">geen mediaplan</span>'}</td><td>${tm}<small>${esc(paren.join(", "))}</small></td><td class="num"><b>${nOk}</b><small>van ${nAll}</small></td><td>${klaar ? '<span class="tag ok"><span class="d"></span>Klaar om live te gaan</span>' : pst !== "ok" ? `<span class="tag blue"><span class="d"></span>Wacht op ${PLAT[P].naam}</span>` : '<span class="tag warn"><span class="d"></span>Wacht op DCO-varianten</span>'}</td></tr>`; }).join("") + `</tbody>`;
 }
 
 /* ---------- mediaplan inladen: lezen zoals het is, niets opmaken ---------- */
